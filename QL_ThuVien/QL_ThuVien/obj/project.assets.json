@@ -8738,11 +8738,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administrator.DESKTOP-2022OMW\\source\\repos\\QL_ThuVien\\QL_ThuVien\\QL_ThuVien.csproj",
+      "projectUniqueName": "C:\\Users\\Administrator.DESKTOP-2022OMW\\Desktop\\DoAn2-QLTV-ASP\\QL_ThuVien\\QL_ThuVien\\QL_ThuVien.csproj",
       "projectName": "QL_ThuVien",
-      "projectPath": "C:\\Users\\Administrator.DESKTOP-2022OMW\\source\\repos\\QL_ThuVien\\QL_ThuVien\\QL_ThuVien.csproj",
+      "projectPath": "C:\\Users\\Administrator.DESKTOP-2022OMW\\Desktop\\DoAn2-QLTV-ASP\\QL_ThuVien\\QL_ThuVien\\QL_ThuVien.csproj",
       "packagesPath": "C:\\Users\\Administrator.DESKTOP-2022OMW\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Administrator.DESKTOP-2022OMW\\source\\repos\\QL_ThuVien\\QL_ThuVien\\obj\\",
+      "outputPath": "C:\\Users\\Administrator.DESKTOP-2022OMW\\Desktop\\DoAn2-QLTV-ASP\\QL_ThuVien\\QL_ThuVien\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Administrator.DESKTOP-2022OMW\\AppData\\Roaming\\NuGet\\NuGet.Config",
