@@ -8733,19 +8733,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Administrator.DESKTOP-2022OMW\\.nuget\\packages\\": {}
+    "C:\\Users\\chopp\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administrator.DESKTOP-2022OMW\\Desktop\\DoAn2-QLTV-ASP\\QL_ThuVien\\QL_ThuVien\\QL_ThuVien.csproj",
+      "projectUniqueName": "D:\\HocTap\\ASP\\QL_ThuVien\\QL_ThuVien\\QL_ThuVien.csproj",
       "projectName": "QL_ThuVien",
-      "projectPath": "C:\\Users\\Administrator.DESKTOP-2022OMW\\Desktop\\DoAn2-QLTV-ASP\\QL_ThuVien\\QL_ThuVien\\QL_ThuVien.csproj",
-      "packagesPath": "C:\\Users\\Administrator.DESKTOP-2022OMW\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Administrator.DESKTOP-2022OMW\\Desktop\\DoAn2-QLTV-ASP\\QL_ThuVien\\QL_ThuVien\\obj\\",
+      "projectPath": "D:\\HocTap\\ASP\\QL_ThuVien\\QL_ThuVien\\QL_ThuVien.csproj",
+      "packagesPath": "C:\\Users\\chopp\\.nuget\\packages\\",
+      "outputPath": "D:\\HocTap\\ASP\\QL_ThuVien\\QL_ThuVien\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Administrator.DESKTOP-2022OMW\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\chopp\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8820,7 +8820,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.413\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

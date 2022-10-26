@@ -1,0 +1,78 @@
+﻿@model IEnumerable<QL_ThuVien.Models.TblSach>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StTenSach)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StTomTat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StTinhTrang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StAnh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InSoLuong)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StMaKeSachNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StMaLoaiSachNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StMaTacGiaNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StTenSach)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StTomTat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StTinhTrang)
+            </td>
+            <td>
+                <img src="~/image/@Html.DisplayFor(modelItem => item.StAnh)" width="100">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InSoLuong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StMaKeSachNavigation.StTenKeSach)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StMaLoaiSachNavigation.StTenSach)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StMaTacGiaNavigation.StTenTacGia)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.StMaSach">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.StMaSach">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.StMaSach">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
