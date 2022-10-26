@@ -868,3 +868,8 @@ C:\Users\Administrator.DESKTOP-2022OMW\Desktop\DoAn2-QLTV-ASP\QL_ThuVien\QL_ThuV
 C:\Users\Administrator.DESKTOP-2022OMW\Desktop\DoAn2-QLTV-ASP\QL_ThuVien\QL_ThuVien\obj\Debug\netcoreapp3.1\QL_ThuVien.dll
 C:\Users\Administrator.DESKTOP-2022OMW\Desktop\DoAn2-QLTV-ASP\QL_ThuVien\QL_ThuVien\obj\Debug\netcoreapp3.1\QL_ThuVien.pdb
 C:\Users\Administrator.DESKTOP-2022OMW\Desktop\DoAn2-QLTV-ASP\QL_ThuVien\QL_ThuVien\obj\Debug\netcoreapp3.1\QL_ThuVien.genruntimeconfig.cache
+C:\Users\Administrator.DESKTOP-2022OMW\Desktop\DoAn2-QLTV-ASP\QL_ThuVien\QL_ThuVien\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\AdminKeSach\Create.cshtml.g.cs
+C:\Users\Administrator.DESKTOP-2022OMW\Desktop\DoAn2-QLTV-ASP\QL_ThuVien\QL_ThuVien\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\AdminKeSach\Delete.cshtml.g.cs
+C:\Users\Administrator.DESKTOP-2022OMW\Desktop\DoAn2-QLTV-ASP\QL_ThuVien\QL_ThuVien\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\AdminKeSach\Details.cshtml.g.cs
+C:\Users\Administrator.DESKTOP-2022OMW\Desktop\DoAn2-QLTV-ASP\QL_ThuVien\QL_ThuVien\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\AdminKeSach\Edit.cshtml.g.cs
+C:\Users\Administrator.DESKTOP-2022OMW\Desktop\DoAn2-QLTV-ASP\QL_ThuVien\QL_ThuVien\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\AdminKeSach\Index.cshtml.g.cs
