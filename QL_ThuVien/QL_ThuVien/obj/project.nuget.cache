@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ssmOhy1St5f0j+DftLKUDZUU+tsmnL0zNBm9elely4SAnG2KIDAUi4t0Tv9sPOtchox1Cn2zUkHYttTVVBavPw==",
+  "dgSpecHash": "gahHjq1MwHSvZ6tlsdRHH51LzYyNQvt/9BfvTp31Vs/LL0woDNFFOrOw1+BuMu7BS1GdKA7pfK/1VU9locSwAA==",
   "success": true,
-  "projectFilePath": "D:\\HocTap\\ASP\\QL_ThuVien\\QL_ThuVien\\QL_ThuVien.csproj",
+  "projectFilePath": "C:\\Users\\chopp\\Downloads\\QL_ThuVien\\QL_ThuVien\\QL_ThuVien.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\chopp\\.nuget\\packages\\aspnetcorehero.toastnotification\\1.1.0\\aspnetcorehero.toastnotification.1.1.0.nupkg.sha512",
     "C:\\Users\\chopp\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

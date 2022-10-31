@@ -1,0 +1,72 @@
+﻿@model IEnumerable<QL_ThuVien.Models.TblSinhVien>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StTenSinhVien)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InSoLanBiPhat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InSoDienThoai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StGmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StSoDienThoai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StMaKhoaNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StMaSinhVienNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StTenSinhVien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InSoLanBiPhat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InSoDienThoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StGmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StSoDienThoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StMaKhoaNavigation.StTenKhoa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StMaSinhVienNavigation.StMatKhau)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.StMaSinhVien">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.StMaSinhVien">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.StMaSinhVien">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

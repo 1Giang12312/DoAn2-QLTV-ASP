@@ -63,10 +63,11 @@ namespace QL_ThuVien.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StMaSach,StTenSach,StMaLoaiSach,StMaTacGia,StMaKeSach,StTomTat,StTinhTrang,StAnh,InSoLuong")] TblSach tblSach)
+        public async Task<IActionResult> Create(IFormFile file,[Bind("StMaSach,StTenSach,StMaLoaiSach,StMaTacGia,StMaKeSach,StTomTat,StTinhTrang,StAnh,InSoLuong")] TblSach tblSach)
         {
             if (ModelState.IsValid)
             {
+                tblSach.StAnh = Upload(file);
                 _context.Add(tblSach);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -177,7 +178,7 @@ namespace QL_ThuVien.Areas.Admin.Controllers
             if (file != null)
             {
                 fn = Guid.NewGuid().ToString() + "_" + file.FileName;
-                var path = $"wwwroot\\images\\{fn}";
+                var path = $"wwwroot\\image\\{fn}";
                 using (var stream = new FileStream(path, FileMode.Create))
                 {
                     file.CopyTo(stream);

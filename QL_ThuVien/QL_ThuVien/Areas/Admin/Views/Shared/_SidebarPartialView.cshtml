@@ -15,13 +15,14 @@
         </div>
         <div class="navbar-nav w-100">
             <a class="nav-item nav-link active" asp-area="Admin" asp-controller="Home" asp-action="Index"><i class="fa fa-tachometer-alt me-2" ></i>Trang chính</a>
-            <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Tài khoản</a>
+            <a asp-area="Admin" asp-controller="TaiKhoann" asp-action="Index" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Tài khoản</a>
+            <a asp-area="Admin" asp-controller="SinhVien" asp-action="Index" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Sinh viên</a>
             <a asp-area="Admin" asp-controller="LoaiSach" asp-action="Index" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Loại sách</a>
             <a asp-area="Admin" asp-controller="Sach" asp-action="Index" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Đầu sách</a>
             <a asp-area="Admin" asp-controller="TacGia" asp-action="Index" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Tác giả</a>
             <a asp-area="Admin" asp-controller="KeSach" asp-action="Index" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Kệ sách</a>
-            <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Khoa</a>
-            <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Mượn/trả sách</a>
+            <a asp-area="Admin" asp-controller="Khoa" asp-action="Index" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Khoa</a>
+            <a asp-area="Admin" asp-controller="DonMuonSach" asp-action="Index" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Mượn/trả sách</a>
             <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Thống kê</a>
 
         </div>
