@@ -22,4 +22,12 @@
     <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\lib\easing\easing.js" />
+    <None Include="wwwroot\lib\easing\easing.min.js" />
+    <None Include="wwwroot\lib\owlcarousel\LICENSE" />
+    <None Include="wwwroot\lib\owlcarousel\owl.carousel.js" />
+    <None Include="wwwroot\lib\owlcarousel\owl.carousel.min.js" />
+  </ItemGroup>
+
 </Project>

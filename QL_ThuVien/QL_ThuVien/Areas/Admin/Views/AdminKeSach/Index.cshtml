@@ -1,36 +1,47 @@
 ﻿@model IEnumerable<QL_ThuVien.Models.TblKeSach>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Quản lý kệ sách";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Quản lý kệ sách</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-success m-2" asp-action="Create">Thêm mới</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.StTenKeSach)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.StTenKeSach)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.StMaKeSach">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.StMaKeSach">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.StMaKeSach">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<!--phan trang-->
+
+        <h6 class="mb-4">Danh sách kệ sách</h6>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    @Html.DisplayNameFor(model => model.StMaKeSach)
+                </tr>
+                <tr>
+                    @Html.DisplayNameFor(model => model.StTenKeSach)
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <th scope="row">@item.StMaKeSach</th>
+                            <td>@Html.DisplayFor(modelItem => item.StTenKeSach)</td>
+                            <td>
+                                <a class="btn btn-secondary m-2" asp-action="Edit" asp-route-id="@item.StMaKeSach">Edit</a>
+                                <a class="btn btn-success m-2" asp-action="Details" asp-route-id="@item.StMaKeSach">Details</a> 
+                                <a class="btn btn-danger m-2" asp-action="Delete" asp-route-id="@item.StMaKeSach">Delete</a>
+                                
+                            </td>
+                            
+                        </tr>
+                       
+                        }
+                }
+                    </tbody>
+        </table>
+

@@ -873,3 +873,8 @@ C:\Users\Administrator.DESKTOP-2022OMW\Desktop\DoAn2-QLTV-ASP\QL_ThuVien\QL_ThuV
 C:\Users\Administrator.DESKTOP-2022OMW\Desktop\DoAn2-QLTV-ASP\QL_ThuVien\QL_ThuVien\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\AdminKeSach\Details.cshtml.g.cs
 C:\Users\Administrator.DESKTOP-2022OMW\Desktop\DoAn2-QLTV-ASP\QL_ThuVien\QL_ThuVien\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\AdminKeSach\Edit.cshtml.g.cs
 C:\Users\Administrator.DESKTOP-2022OMW\Desktop\DoAn2-QLTV-ASP\QL_ThuVien\QL_ThuVien\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\AdminKeSach\Index.cshtml.g.cs
+C:\Users\Administrator.DESKTOP-2022OMW\Desktop\DoAn2-QLTV-ASP\QL_ThuVien\QL_ThuVien\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_FooterPartialView.cshtml.g.cs
+C:\Users\Administrator.DESKTOP-2022OMW\Desktop\DoAn2-QLTV-ASP\QL_ThuVien\QL_ThuVien\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_HeaderPartialView.cshtml.g.cs
+C:\Users\Administrator.DESKTOP-2022OMW\Desktop\DoAn2-QLTV-ASP\QL_ThuVien\QL_ThuVien\obj\Debug\netcoreapp3.1\Razor\Views\Home\Contact.cshtml.g.cs
+C:\Users\Administrator.DESKTOP-2022OMW\Desktop\DoAn2-QLTV-ASP\QL_ThuVien\QL_ThuVien\obj\Debug\netcoreapp3.1\Razor\Views\Book\Index.cshtml.g.cs
+C:\Users\Administrator.DESKTOP-2022OMW\Desktop\DoAn2-QLTV-ASP\QL_ThuVien\QL_ThuVien\obj\Debug\netcoreapp3.1\Razor\Views\Book\Details.cshtml.g.cs
