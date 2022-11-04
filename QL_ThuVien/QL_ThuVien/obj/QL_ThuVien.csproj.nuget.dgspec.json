@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\chopp\\Downloads\\QL_ThuVien\\QL_ThuVien\\QL_ThuVien.csproj": {}
+    "D:\\HocTap\\ASP\\QL_ThuVien\\QL_ThuVien\\QL_ThuVien.csproj": {}
   },
   "projects": {
-    "C:\\Users\\chopp\\Downloads\\QL_ThuVien\\QL_ThuVien\\QL_ThuVien.csproj": {
+    "D:\\HocTap\\ASP\\QL_ThuVien\\QL_ThuVien\\QL_ThuVien.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\chopp\\Downloads\\QL_ThuVien\\QL_ThuVien\\QL_ThuVien.csproj",
+        "projectUniqueName": "D:\\HocTap\\ASP\\QL_ThuVien\\QL_ThuVien\\QL_ThuVien.csproj",
         "projectName": "QL_ThuVien",
-        "projectPath": "C:\\Users\\chopp\\Downloads\\QL_ThuVien\\QL_ThuVien\\QL_ThuVien.csproj",
+        "projectPath": "D:\\HocTap\\ASP\\QL_ThuVien\\QL_ThuVien\\QL_ThuVien.csproj",
         "packagesPath": "C:\\Users\\chopp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\chopp\\Downloads\\QL_ThuVien\\QL_ThuVien\\obj\\",
+        "outputPath": "D:\\HocTap\\ASP\\QL_ThuVien\\QL_ThuVien\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\chopp\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -77,8 +77,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -90,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.413\\RuntimeIdentifierGraph.json"
         }
       }
     }
