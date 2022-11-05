@@ -17,7 +17,7 @@ namespace QL_ThuVien.Models
         [Display(Name = "Mã loại sách")]
         public int StMaLoaiSach { get; set; }
 
-        [Display(Name = "Tên sách")]
+        [Display(Name = "Tên loại sách")]
         public string StTenSach { get; set; }
 
 
