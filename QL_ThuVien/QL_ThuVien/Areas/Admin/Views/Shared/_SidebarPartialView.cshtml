@@ -1,29 +1,31 @@
 ﻿<div class="sidebar pe-4 pb-3">
     <nav class="navbar bg-light navbar-light">
         <a href="index.html" class="navbar-brand mx-4 mb-3">
-            <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>Trang quản lý</h3>
+            <h3 class="text-info">Quản Trị Hệ Thống</h3>
         </a>
         <div class="d-flex align-items-center ms-4 mb-4">
             <div class="position-relative">
-                <img class="rounded-circle" src="" alt="" style="width: 40px; height: 40px;">
+                
+
+                <img class="rounded-circle" src="~/image/bia.png" style="width: 40px; height: 40px;" />
                 <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
             </div>
             <div class="ms-3">
-                <h6 class="mb-0">Tên admin</h6>
+                <h6>ADMIN</h6> 
                 <span>Admin</span>
             </div>
         </div>
         <div class="navbar-nav w-100">
             <a class="nav-item nav-link active" asp-area="Admin" asp-controller="Home" asp-action="Index"><i class="fa fa-tachometer-alt me-2" ></i>Trang chính</a>
-            <a asp-area="Admin" asp-controller="TaiKhoan" asp-action="Index" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Tài khoản</a>
-            <a asp-area="Admin" asp-controller="SinhVien" asp-action="Index" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Sinh viên</a>
-            <a asp-area="Admin" asp-controller="LoaiSach" asp-action="Index" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Loại sách</a>
-            <a asp-area="Admin" asp-controller="Sach" asp-action="Index" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Đầu sách</a>
-            <a asp-area="Admin" asp-controller="TacGia" asp-action="Index" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Tác giả</a>
-            <a asp-area="Admin" asp-controller="KeSach" asp-action="Index" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Kệ sách</a>
-            <a asp-area="Admin" asp-controller="Khoa" asp-action="Index" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Khoa</a>
-            <a asp-area="Admin" asp-controller="DonMuonSach" asp-action="Index" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Mượn/trả sách</a>
-            <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Thống kê</a>
+            <a asp-area="Admin" asp-controller="TaiKhoan" asp-action="Index" class="nav-item nav-link"><i class="fa fa-th me-2 text-warning"></i>Tài khoản</a>
+            <a asp-area="Admin" asp-controller="SinhVien" asp-action="Index" class="nav-item nav-link"><i class="fa fa-th me-2 text-success"></i>Sinh viên</a>
+            <a asp-area="Admin" asp-controller="LoaiSach" asp-action="Index" class="nav-item nav-link"><i class="fa fa-chart-bar me-2 text-primary"></i>Loại sách</a>
+            <a asp-area="Admin" asp-controller="Sach" asp-action="Index" class="nav-item nav-link"><i class="fa fa-keyboard me-2 text-danger"></i>Đầu sách</a>
+            <a asp-area="Admin" asp-controller="TacGia" asp-action="Index" class="nav-item nav-link"><i class="fa fa-keyboard me-2 text-info"></i>Tác giả</a>
+            <a asp-area="Admin" asp-controller="KeSach" asp-action="Index" class="nav-item nav-link"><i class="fa fa-keyboard me-2 text-secondary"></i>Kệ sách</a>
+            <a asp-area="Admin" asp-controller="Khoa" asp-action="Index" class="nav-item nav-link"><i class="fa fa-keyboard me-2 text-danger"></i>Khoa</a>
+            <a asp-area="Admin" asp-controller="DonMuonSach" asp-action="Index" class="nav-item nav-link"><i class="fa fa-table me-2 text-warning"></i>Mượn/trả sách</a>
+            <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2 text-info"></i>Thống kê</a>
 
         </div>
     </nav>

@@ -8,8 +8,16 @@
 <h1>Quản lý tác giả</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-success m-2" asp-action="Create">Thêm mới</a>
 </p>
+<div class="btn-group ">
+    <div class="col-lg-12 ">
+        <form class="d-flex" role="search">
+            <input style="max-width:250px;max-height:40px;" class="form-control me-2" type="search" placeholder="Bạn muốn tìm gì?" aria-label="Search">
+            <button style="max-width:100px;max-height:35px;" class="btn btn-outline-success" type="submit">Tìm</button>
+        </form>
+    </div>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -25,10 +33,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.StTenTacGia)
             </td>
+           
             <td>
-                <a asp-action="Edit" asp-route-id="@item.StMaTacGia">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.StMaTacGia">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.StMaTacGia">Delete</a>
+                <a class="btn btn-secondary m-2" asp-action="Edit" asp-route-id="@item.StMaTacGia">Edit</a>
+                <a class="btn btn-success m-2" asp-action="Details" asp-route-id="@item.StMaTacGia">Details</a>
+                <a class="btn btn-danger m-2" asp-action="Delete" asp-route-id="@item.StMaTacGia">Delete</a>
+
             </td>
         </tr>
 }

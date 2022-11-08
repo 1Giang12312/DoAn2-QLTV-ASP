@@ -5,9 +5,13 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Create</h1>
-
-<h4>TblSinhVien</h4>
+<h1>Thêm Mới Sinh Viên</h1>
+<style>
+    .mycolor {
+        color: #ff0000;
+    }
+</style>
+<p class="mycolor">Thông tin của Sinh Viên</p>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -20,7 +24,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="StMaKhoa" class="control-label"></label>
-                <select asp-for="StMaKhoa" class ="form-control" asp-items="ViewBag.StMaKhoa"></select>
+                <select asp-for="StMaKhoa" class="form-control" asp-items="ViewBag.StMaKhoa"></select>
             </div>
             <div class="form-group">
                 <label asp-for="InSoLanBiPhat" class="control-label"></label>
@@ -43,7 +47,7 @@
                 <span asp-validation-for="StSoDienThoai" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Thêm Mới" class="btn btn-primary" />
             </div>
         </form>
     </div>
