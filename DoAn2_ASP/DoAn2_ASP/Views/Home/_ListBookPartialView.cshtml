@@ -1,0 +1,24 @@
+﻿@model List<TblSach>
+    <div class="tab-content">
+        <div id="all-genre" data-tab-content class="active">
+            @if (Model != null && Model.Count() > 0)
+            {
+                foreach (var item in Model)
+                {
+                        <div class="col-md-3">
+                            <figure class="product-style">
+                                <a asp-area="" asp-route-id="@item.StMaSach" asp-controller="Book" asp-action="Detail">
+                                    <img src="~/image/@item.StAnh" alt="Books" class="product-item">
+                                    </a>
+                                <figcaption>
+                                    <a asp-area="" asp-route-id="@item.StMaSach" asp-controller="Book" asp-action="Detail">
+                                        <h3>@item.StTenSach</h3>
+                                        </a>
+                                </figcaption>
+</figure>
+                        </div>
+        }
+    }
+            </div>
+        </div>
+
