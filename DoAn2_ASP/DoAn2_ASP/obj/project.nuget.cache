@@ -1,6 +1,7 @@
 {
   "version": 2,
 <<<<<<< HEAD
+<<<<<<< HEAD
   "dgSpecHash": "1XnhCd4GPxRG79VxX9b3JYq8FlQ30SZd+Fiqyb/ln86N+GcEkC1HAmuPfj2x0dh/euW1W5Pgw6qG7Eet/j1MTw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Administrator\\source\\repos\\DoAn2_ASP\\DoAn2_ASP\\DoAn2_ASP.csproj",
@@ -9,6 +10,11 @@
   "success": true,
   "projectFilePath": "C:\\Users\\Administrator\\Desktop\\DoAn2_ASP\\DoAn2_ASP\\DoAn2_ASP.csproj",
 >>>>>>> 8ceeb82 (giang)
+=======
+  "dgSpecHash": "JLY0KYf2P1ADJ+SvPH9gLcH8ZmzBYPZmBlMQPa9V++zgniPg16japdpFDVMn3cpYESVkW6XIq0RTujIfo+IrLw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Administrator\\Desktop\\DoAn2_ASP\\DoAn2_ASP\\DoAn2_ASP.csproj",
+>>>>>>> main
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\aspnetcorehero.toastnotification\\1.1.0\\aspnetcorehero.toastnotification.1.1.0.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.30\\microsoft.aspnetcore.cryptography.internal.3.1.30.nupkg.sha512",

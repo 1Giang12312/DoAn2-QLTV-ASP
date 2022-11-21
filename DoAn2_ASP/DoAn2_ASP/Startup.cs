@@ -1,11 +1,16 @@
 using AspNetCoreHero.ToastNotification;
 <<<<<<< HEAD
+<<<<<<< HEAD
 using DoAn2_ASP.Data;
 using DoAn2_ASP.Models;
 =======
 using DoAn2_ASP.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 >>>>>>> 8ceeb82 (giang)
+=======
+using DoAn2_ASP.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+>>>>>>> main
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -38,6 +43,7 @@ namespace DoAn2_ASP
         public void ConfigureServices(IServiceCollection services)
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -46,6 +52,8 @@ namespace DoAn2_ASP
             services.AddControllersWithViews();
             services.AddRazorPages();
 =======
+=======
+>>>>>>> main
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
              .AddCookie(p =>
              {
@@ -58,7 +66,10 @@ namespace DoAn2_ASP
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddSession();
+<<<<<<< HEAD
 >>>>>>> 8ceeb82 (giang)
+=======
+>>>>>>> main
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddNotyf(config => { config.DurationInSeconds = 3; config.IsDismissable = true; config.Position = NotyfPosition.TopRight; });
             services.AddDbContext<DoAn2_ASP.Models.QL_ThuVienContext>();
@@ -82,6 +93,7 @@ namespace DoAn2_ASP
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
             app.UseRouting();
 
@@ -95,6 +107,14 @@ namespace DoAn2_ASP
             
             
 >>>>>>> 8ceeb82 (giang)
+=======
+            app.UseSession();
+            app.UseRouting(); 
+            app.UseAuthentication();
+            app.UseAuthorization();
+            
+            
+>>>>>>> main
 
             app.UseEndpoints(endpoints =>
             {

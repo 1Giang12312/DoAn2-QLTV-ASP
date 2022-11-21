@@ -414,9 +414,12 @@ C:\Users\Administrator\source\repos\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\
 C:\Users\Administrator\source\repos\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\DoAn2_ASP.TagHelpers.output.cache
 C:\Users\Administrator\source\repos\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\DoAn2_ASP.RazorCoreGenerate.cache
 <<<<<<< HEAD
+<<<<<<< HEAD
 C:\Users\Administrator\source\repos\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
 =======
 >>>>>>> 8ceeb82 (giang)
+=======
+>>>>>>> main
 C:\Users\Administrator\source\repos\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\Administrator\source\repos\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\Administrator\source\repos\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
@@ -440,6 +443,7 @@ C:\Users\Administrator\source\repos\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\
 C:\Users\Administrator\source\repos\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\_ViewStart.cshtml.g.cs
 C:\Users\Administrator\source\repos\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Home\Index.cshtml.g.cs
 <<<<<<< HEAD
+<<<<<<< HEAD
 C:\Users\Administrator\source\repos\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\ConfirmEmail.cshtml.g.cs
 C:\Users\Administrator\source\repos\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\ForgotPassword.cshtml.g.cs
 C:\Users\Administrator\source\repos\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Login.cshtml.g.cs
@@ -449,6 +453,8 @@ C:\Users\Administrator\source\repos\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\
 C:\Users\Administrator\source\repos\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 =======
 >>>>>>> 8ceeb82 (giang)
+=======
+>>>>>>> main
 C:\Users\Administrator\source\repos\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\Razor\wwwroot\_AdminLayout.cshtml.g.cs
 C:\Users\Administrator\source\repos\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Shared\_SidebarPartialView.cshtml.g.cs
 C:\Users\Administrator\source\repos\DoAn2_ASP\DoAn2_ASP\bin\Debug\netcoreapp3.1\AspNetCoreHero.ToastNotification.Views.dll
@@ -511,7 +517,10 @@ C:\Users\Administrator\source\repos\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\
 C:\Users\Administrator\source\repos\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Book\List.cshtml.g.cs
 C:\Users\Administrator\source\repos\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Home\_ListBookPartialView.cshtml.g.cs
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> main
 C:\Users\Administrator\source\repos\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Accounts\DangkyTaiKhoan.cshtml.g.cs
 C:\Users\Administrator\source\repos\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Accounts\Login.cshtml.g.cs
 C:\Users\Administrator\Desktop\DoAn2_ASP\DoAn2_ASP\bin\Debug\netcoreapp3.1\appsettings.Development.json
@@ -1016,4 +1025,7 @@ C:\Users\Administrator\Desktop\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\DoAn2
 C:\Users\Administrator\Desktop\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\DoAn2_ASP.genruntimeconfig.cache
 C:\Users\Administrator\Desktop\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Accounts\Dashboard.cshtml.g.cs
 C:\Users\Administrator\Desktop\DoAn2_ASP\DoAn2_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Accounts\_DonSachPartialView.cshtml.g.cs
+<<<<<<< HEAD
 >>>>>>> 8ceeb82 (giang)
+=======
+>>>>>>> main

@@ -299,13 +299,19 @@ namespace DoAn2_ASP.Models
                     .HasMaxLength(9);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> main
                 entity.Property(e => e.StSalt)
                     .IsRequired()
                     .HasColumnName("St_Salt")
                     .HasMaxLength(50);
 
+<<<<<<< HEAD
 >>>>>>> 8ceeb82 (giang)
+=======
+>>>>>>> main
                 entity.Property(e => e.StMatKhau)
                     .IsRequired()
                     .HasColumnName("St_MatKhau")

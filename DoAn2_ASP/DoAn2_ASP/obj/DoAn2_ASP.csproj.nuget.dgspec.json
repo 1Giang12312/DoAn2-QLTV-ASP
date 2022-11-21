@@ -2,6 +2,7 @@
   "format": 1,
   "restore": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "C:\\Users\\Administrator\\source\\repos\\DoAn2_ASP\\DoAn2_ASP\\DoAn2_ASP.csproj": {}
   },
   "projects": {
@@ -26,6 +27,19 @@
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Administrator\\Desktop\\DoAn2_ASP\\DoAn2_ASP\\obj\\",
 >>>>>>> 8ceeb82 (giang)
+=======
+    "C:\\Users\\Administrator\\Desktop\\DoAn2_ASP\\DoAn2_ASP\\DoAn2_ASP.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Administrator\\Desktop\\DoAn2_ASP\\DoAn2_ASP\\DoAn2_ASP.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\DoAn2_ASP\\DoAn2_ASP\\DoAn2_ASP.csproj",
+        "projectName": "DoAn2_ASP",
+        "projectPath": "C:\\Users\\Administrator\\Desktop\\DoAn2_ASP\\DoAn2_ASP\\DoAn2_ASP.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Administrator\\Desktop\\DoAn2_ASP\\DoAn2_ASP\\obj\\",
+>>>>>>> main
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
