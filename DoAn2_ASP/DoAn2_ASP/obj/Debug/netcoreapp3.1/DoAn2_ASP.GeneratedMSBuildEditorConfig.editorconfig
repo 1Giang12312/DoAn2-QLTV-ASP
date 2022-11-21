@@ -1,3 +1,7 @@
 is_global = true
 build_property.RootNamespace = DoAn2_ASP
+<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\Administrator\source\repos\DoAn2_ASP\DoAn2_ASP\
+=======
+build_property.ProjectDir = C:\Users\Administrator\Desktop\DoAn2_ASP\DoAn2_ASP\
+>>>>>>> 8ceeb82 (giang)

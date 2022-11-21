@@ -1,6 +1,11 @@
 using AspNetCoreHero.ToastNotification;
+<<<<<<< HEAD
 using DoAn2_ASP.Data;
 using DoAn2_ASP.Models;
+=======
+using DoAn2_ASP.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+>>>>>>> 8ceeb82 (giang)
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +37,7 @@ namespace DoAn2_ASP
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+<<<<<<< HEAD
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -39,6 +45,20 @@ namespace DoAn2_ASP
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+=======
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+             .AddCookie(p =>
+             {
+                // p.Cookie.Name = "UserLoginCookie";
+                 //p.ExpireTimeSpan = TimeSpan.FromDays(1);
+                    p.LoginPath = "/Accounts/login";
+                    //p.LogoutPath = "/dang-xuat/html";
+                   p.AccessDeniedPath = "/";
+             });
+            services.AddControllersWithViews();
+            services.AddRazorPages();
+            services.AddSession();
+>>>>>>> 8ceeb82 (giang)
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddNotyf(config => { config.DurationInSeconds = 3; config.IsDismissable = true; config.Position = NotyfPosition.TopRight; });
             services.AddDbContext<DoAn2_ASP.Models.QL_ThuVienContext>();
@@ -61,11 +81,20 @@ namespace DoAn2_ASP
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+<<<<<<< HEAD
 
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
+=======
+            app.UseSession();
+            app.UseRouting(); 
+            app.UseAuthentication();
+            app.UseAuthorization();
+            
+            
+>>>>>>> 8ceeb82 (giang)
 
             app.UseEndpoints(endpoints =>
             {

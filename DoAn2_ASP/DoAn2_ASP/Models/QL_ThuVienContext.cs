@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using DoAn2_ASP.ModelView;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
 // If you have enabled NRTs for your project, then un-comment the following line:
@@ -297,10 +298,18 @@ namespace DoAn2_ASP.Models
                     .HasColumnName("St_MaSinhVien")
                     .HasMaxLength(9);
 
+<<<<<<< HEAD
+=======
+                entity.Property(e => e.StSalt)
+                    .IsRequired()
+                    .HasColumnName("St_Salt")
+                    .HasMaxLength(50);
+
+>>>>>>> 8ceeb82 (giang)
                 entity.Property(e => e.StMatKhau)
                     .IsRequired()
                     .HasColumnName("St_MatKhau")
-                    .HasMaxLength(20);
+                    .HasMaxLength(50);
 
                 entity.HasOne(d => d.InMaQuyenHanNavigation)
                     .WithMany(p => p.TblTaiKhoan)
@@ -319,5 +328,9 @@ namespace DoAn2_ASP.Models
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+        public DbSet<DoAn2_ASP.ModelView.RegisterVM> RegisterVM { get; set; }
+
+        public DbSet<DoAn2_ASP.ModelView.LoginVM> LoginVM { get; set; }
     }
 }

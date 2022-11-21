@@ -9101,11 +9101,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\Administrator\\source\\repos\\DoAn2_ASP\\DoAn2_ASP\\DoAn2_ASP.csproj",
       "projectName": "DoAn2_ASP",
       "projectPath": "C:\\Users\\Administrator\\source\\repos\\DoAn2_ASP\\DoAn2_ASP\\DoAn2_ASP.csproj",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Administrator\\source\\repos\\DoAn2_ASP\\DoAn2_ASP\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\DoAn2_ASP\\DoAn2_ASP\\DoAn2_ASP.csproj",
+      "projectName": "DoAn2_ASP",
+      "projectPath": "C:\\Users\\Administrator\\Desktop\\DoAn2_ASP\\DoAn2_ASP\\DoAn2_ASP.csproj",
+      "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Administrator\\Desktop\\DoAn2_ASP\\DoAn2_ASP\\obj\\",
+>>>>>>> 8ceeb82 (giang)
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -26,6 +26,10 @@ namespace DoAn2_ASP.Models
         [Display(Name = "Ngày tạo")]
         public DateTime DaNgayTao { get; set; }
 
+<<<<<<< HEAD
+=======
+        public string StSalt { get; set; }
+>>>>>>> 8ceeb82 (giang)
         public virtual TblQuyenHan InMaQuyenHanNavigation { get; set; }
         public virtual TblSinhVien StMaSinhVienNavigation { get; set; }
     }

@@ -23,9 +23,23 @@
                 </div>
                 <div class="col-md-6">
                     <div class="right-element">
+<<<<<<< HEAD
                         <a href="#" class="user-account for-buy"><i class="icon icon-user"></i><span>Tài khoản</span></a>
                         <a href="#" class="cart for-buy"><i class="icon icon-clipboard"></i><span>Giỏ sách</span></a>
 
+=======
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a asp-controller="Accounts" asp-action="Dashboard" class="user-account for-buy"><i class="icon icon-user"></i><span>Thông tin tài khoản</span></a>
+                            <a href="#" class="cart for-buy"><i class="icon icon-clipboard"></i><span>Giỏ sách</span></a>
+                            <a asp-controller="Accounts" asp-action="Logout" class="cart for-buy"><i class="icon icon-clipboard"></i><span>Đăng xuất</span></a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Accounts" asp-action="DangkyTaiKhoan" class="user-account for-buy"><i class="icon icon-user"></i><span>Đăng kí</span></a>
+                            <a asp-controller="Accounts" asp-action="Login" class="user-account for-buy"><i class="icon icon-user"></i><span>Đăng nhập</span></a>
+                        }
+>>>>>>> 8ceeb82 (giang)
                         <div class="action-menu">
 
                             <div class="search-bar">
