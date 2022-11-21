@@ -1,0 +1,51 @@
+﻿@model List<TblSach>
+<table class="table table-hover">
+    <tbody id="records_table">
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StTenSach)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StTomTat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StTinhTrang)
+                    </td>
+                    <td>
+                        <img src="~/image/@Html.DisplayFor(modelItem => item.StAnh)" width="100">
+                    </td>
+                    <td>
+                        @if (item.InSoLuong <= 0)
+                        {
+                            <p>Hết</p>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.InSoLuong)
+                        }
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StMaKeSachNavigation.StTenKeSach)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StMaLoaiSachNavigation.StTenSach)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StMaTacGiaNavigation.StTenTacGia)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.StMaSach">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.StMaSach">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.StMaSach">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+    </table>

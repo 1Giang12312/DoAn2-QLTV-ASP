@@ -1,0 +1,68 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<DoAn2_ASP.Models.TblSinhVien>
+
+@{ 
+    int CurrentPage = ViewBag.CurrentPage;
+    ViewData["Title"] = "Danh sách sinh viên" + CurrentPage;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Danh sách sinh viên trang @CurrentPage</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Họ và Tên
+            </th>
+            <th>
+                Số lần bị phạt
+            </th>
+            <th>
+                Gmail
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+                Khoa
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StTenSinhVien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InSoLanBiPhat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StGmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StSoDienThoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StMaKhoaNavigation.StTenKhoa)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.StMaSinhVien">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.StMaSinhVien">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.StMaSinhVien">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div  aria-label="Page nav  example">
+    <ul class="pagination">
+        <pager class="pager-container" list="@Model"  asp-area="Admin" asp-controller="SinhVien" asp-action="Index"/>
+    </ul>
+
+</div>

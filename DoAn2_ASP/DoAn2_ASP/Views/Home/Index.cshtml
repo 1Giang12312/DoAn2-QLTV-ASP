@@ -1,0 +1,137 @@
+﻿@model DoAn2_ASP.ModelView.HomeViewVM
+@{
+    ViewData["Title"] = "Trang chính";
+    //Layout="~/Views/Shared/_Layout.cshtml";
+    List<TblSach> allBook = ViewBag.AllBook;
+
+}
+
+
+<section id="billboard">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <button class="prev slick-arrow">
+                    <i class="icon icon-arrow-left"></i>
+                </button>
+
+                <div class="main-slider pattern-overlay">
+                    <div class="slider-item">
+                        <div class="banner-content">
+                            <h2 class="banner-title">Life of the Wild</h2>
+                            <p>Tóm tắt sách bằng tiếng việt.</p>
+                            <div class="btn-wrap">
+                                <a href="#" class="btn btn-outline-accent btn-accent-arrow">Xem thêm<i class="icon icon-ns-arrow-right"></i></a>
+                            </div>
+                        </div><!--banner-content-->
+                        <img src="images/main-banner1.jpg" alt="banner" class="banner-image">
+                    </div><!--slider-item-->
+
+                    <div class="slider-item">
+                        <div class="banner-content">
+                            <h2 class="banner-title">Birds gonna be Happy</h2>
+                            <p>Tóm tắt sách bằng tiếng việt.</p>
+                            <div class="btn-wrap">
+                                <a href="#" class="btn btn-outline-accent btn-accent-arrow">Xem thêm<i class="icon icon-ns-arrow-right"></i></a>
+                            </div>
+                        </div><!--banner-content-->
+                        <img src="images/main-banner2.jpg" alt="banner" class="banner-image">
+                    </div><!--slider-item-->
+
+                </div><!--slider-->
+
+                <button class="next slick-arrow">
+                    <i class="icon icon-arrow-right"></i>
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+<section id="best-selling" class="leaf-pattern-overlay">
+    <div class="corner-pattern-overlay"></div>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-8 col-md-offset-2">
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <figure class="products-thumb">
+                            <img src="images/single-image.jpg" alt="book" class="single-image">
+                        </figure>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="product-entry">
+                            <h2 class="section-title divider">Sách được yêu thích</h2>
+
+                            <div class="products-content">
+                                <div class="author-name">By Timbur Hood</div>
+                                <h3 class="item-title">Birds gonna be happy</h3>
+                                <p>Tóm tắt sách và những bài học</p>
+                                <div class="btn-wrap">
+                                    <a href="#" class="btn-accent-arrow">Xem thêm <i class="icon icon-ns-arrow-right"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- / row -->
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="popular-books" class="bookshelf">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="section-header align-center">
+                    <div class="title">
+                        <span>Sách mới thêm</span>
+                    </div>
+                    <h2 class="section-title">Sách nên đọc</h2>
+                </div>
+
+                <ul class="tabs">
+                    
+                    @foreach (var item in Model.Book)
+                    {
+                        <li class="tab">
+                            <a asp-area="" asp-route-StMaLoaiSach="@item.tblloaisach.StMaLoaiSach" asp-controller="Book" asp-action="List">
+                                @item.tblloaisach.StTenSach
+                            </a>
+                        </li>
+                    }
+                </ul>
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="all-items" role="tabpanel" aria-labelledby="all-items-tab">
+                        @await Html.PartialAsync("_ListBookPartialView", allBook)
+                    </div>
+                </div>
+            </div><!--inner-tabs-->
+        </div>
+    </div>
+</section>
+
+<section id="quotation" class="align-center">
+    <div class="inner-content">
+        <h2 class="section-title divider">Câu châm ngôn</h2>
+        <blockquote data-aos="fade-up">
+            <q>“The more that you read, the more things you will know. The more that you learn, the more places you’ll go.”</q>
+            <div class="author-name">Dr. Seuss</div>
+        </blockquote>
+    </div>
+</section>
+
