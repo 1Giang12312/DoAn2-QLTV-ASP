@@ -1,0 +1,149 @@
+﻿@model List<DoAn2_ASP.ModelView.CartItem>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+
+
+
+@if (Model != null && Model.Count() > 0)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-md-offset-1">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Tên sách</th>
+                            <th>Ảnh</th>
+                            <th>Tình trạng</th>
+                            <th>Số lượng</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <a href="/Book/Detail/@item.book.StMaSach">@item.book.StTenSach</a>
+                                </td>
+                                <td class="col-sm-8 col-md-6">
+                                    <div class="media">
+                                        <a class="thumbnail pull-left"> <img class="media-object" src="~/image/@item.book.StAnh" style="width: 120px; height: 120px;"> </a>
+
+                                    </div>
+                                </td>
+                                <td>
+                                    @item.book.StTinhTrang
+                                </td>
+                                <td class="col-sm-1 col-md-1" style="text-align: center">
+                                    <input data-mahh="@item.book.StMaSach" class="cartItem cart-plus-minus-box" value="@item.amount" min="1" type="number">
+                                </td>
+                                <td class="col-sm-1 col-md-1">
+                                    <button data-mahh="@item.book.StMaSach" type="button" class="removecart btn btn-danger">
+                                        <span class="glyphicon glyphicon-remove"></span> Xóa
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td></td>
+                            <td>
+                                <button onclick="location.href='/book';" type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span> Quay lại trang chủ
+                                </button>
+                            </td>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <td>
+                                    <button onclick="location.href='/CheckOut/Index';" type="button" class="btn btn-success">
+                                        Đăng kí mượn <span class="glyphicon glyphicon-play"></span>
+                                    </button>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <button onclick="location.href='/Acounts/login?returnUrl=/checkout.html';" type="button" class="btn btn-success">
+                                        Đăng kí mượn <span class="glyphicon glyphicon-play"></span>
+                                    </button>
+                                </td>
+                            }
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <h1>Chưa có sách trong giỏ</h1>
+}
+
+@section Scripts{
+    <script>
+        $(function () {
+            function loadHeaderCart() {
+                $('#miniCart').load("/AjaxContent/HeaderCart");
+                $('#numberCart').load("/AjaxContent/NumberCart");
+            }
+            $(".removecart").click(function () {
+                var bookID = $(this).attr("data-mahh");
+                $.ajax({
+                    url: "/BookCart/Remove",
+                    type: "POST",
+                    dataType: "JSON",
+                    data: { bookID: bookID },
+                    success: function (result) {
+                        if (result.success) {
+                            //loadHeaderCart();//Reload lai gio hang
+                            location.reload();
+                        }
+                    },
+                    error: function (rs) {
+                        alert("Remove Cart Error !")
+                    }
+                });
+            });
+            $(".cartItem").click(function () {
+                var bookID = $(this).attr("data-mahh");
+                var soluong = parseInt($(this).val());
+                $.ajax({
+                    url: "/BookCart/UpdateCart",
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        bookID: bookID,
+                        amount: soluong
+                    },
+                    success: function (result) {
+                        if (result.success) {
+                            //loadHeaderCart();//Reload lai gio hang
+                            //window.location = 'cart.html';
+                            window.location = response.url;
+                        }
+                    },
+                    error: function (rs) {
+                        alert("Cập nhật Cart Error !")
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+
+
+

@@ -1,0 +1,112 @@
+﻿@model DoAn2_ASP.ModelView.DangKyMuonMV
+@{
+    ViewData["Title"] = "Đăng kí mượn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<DoAn2_ASP.ModelView.CartItem> Carts = ViewBag.GioSach;
+}
+
+
+
+
+
+<main class="main-content">
+    <div class="breadcrumb-area breadcrumb-height" data-bg-image="/assets/images/banner/2-1-1920x523.jpg">
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-item">
+                        <h2 class="breadcrumb-heading">THÔNG TIN MUA HÀNG</h2>
+                        <ul>
+                            <li>
+                                <a href="/">Trang chủ <i class="pe-7s-angle-right"></i></a>
+                            </li>
+                            <li>THÔNG TIN MUA HÀNG</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="checkout-area section-space-y-axis-100">
+        <div class="container">
+            <form asp-controller="Checkout" asp-action="Index" method="post">
+                <input hidden asp-for="StMaSinhVien" />
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+                        <div class="checkbox-form">
+                            <h3>THÔNG TIN ĐƠN MƯỢN</h3>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <label>Họ và Tên</label>
+                                        <input asp-for="FullName" placeholder="Họ và Tên" type="text">
+                                        <span asp-validation-for="FullName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <label>Số điện thoại <span class="required">*</span></label>
+                                        <input asp-for="Phone" placeholder="Số điện thoại" type="text">
+                                        <span asp-validation-for="Phone" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label asp-for="NgayMuon" class="control-label"></label>
+                                    <input asp-for="NgayMuon" class="form-control" />
+                                    <span asp-validation-for="NgayMuon" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-12">
+                                    <label asp-for="NgayTra" class="control-label"></label>
+                                    <input asp-for="NgayTra" class="form-control" />
+                                    <span asp-validation-for="NgayTra" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="your-order">
+                            <h3>THÔNG TIN ĐƠN MƯỢN</h3>
+                            <div class="your-order-table table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="cart-product-name">Tên sách</th>
+                                            <th class="cart-product-total">Số lượng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Carts.Count() > 0)
+                                        {
+                                            foreach (var item in Carts)
+                                            {
+                                                <tr class="cart_item">
+                                                    <td class="cart-product-name">
+                                                        @item.book.StTenSach<strong class="product-quantity">
+
+                                                        </strong>
+                                                    </td>
+                                                    <td class="cart-product-name">
+                                                        @item.amount<strong class="product-quantity">
+
+                                                        </strong>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                            <div class="order-button-payment">
+                                <input value="XÁC NHẬN ĐẶT HÀNG" type="submit">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</main>

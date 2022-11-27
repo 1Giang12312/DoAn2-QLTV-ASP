@@ -1,0 +1,47 @@
+﻿@model List<TblDonMuonSach>
+@if (Model != null && Model.Count() > 0)
+{
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <th>Ngày mượn</th>
+                <th>Ngày trả</th>
+                <th>Trạng thái</th>
+                <th>Xem chi tiết</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+        <tr>
+            <td><a class="account-order-id" href="javascript:void(0)">#@item.StMaDonMuon</a></td>
+            <td>@item.DaNgayMuon</td>
+            <td>@item.DaNgayTra</td>
+            @if (@item.BiTrangThai)//==1
+            {
+                <td>Đã trả</td>
+            }
+            else
+            {
+                <td>Chưa trả</td>
+            }
+            <td>
+                <a href="javascript:void(0)" class="xemdonsach"><span>Xem chi tiết</span></a>
+            </td>
+        </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <br />
+    <br />
+    <br />
+    <hr />
+    <div id="records_table">
+    </div>
+</div>
+}
+else
+{
+        <p>Chưa có đơn sách!</p>
+}
