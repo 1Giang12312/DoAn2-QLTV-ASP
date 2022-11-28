@@ -10,24 +10,15 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<div class="m-b-10 m-r-15">
-    <select class="btn btn-secondary dropdown-toggle" id="MaTaiKhoanID" name="MaTaiKhoanID" style="min-width:180px;" asp-items="ViewBag.QuyenTruyCap">
-        <option disabled selected>Lọc quyền truy cập</option>
-        <option value="all" selected>Tất cả</option>
-    </select>
-    <select class="btn btn-secondary dropdown-toggle" id="TrangThaiID" name="TrangThaiID" style="min-width:180px;" asp-items="ViewBag.lsTrangThai">
-        <option disabled selected>Lọc trạng thái</option>
-        <option value="all" selected>Tất cả</option>
-    </select>
-</div>
 <table class="table">
-
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.StMatKhau)
             </th>
-
+            <th>
+                @Html.DisplayNameFor(model => model.BiTrangThai)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.DaNgayDangNhap)
             </th>
@@ -35,55 +26,47 @@
                 @Html.DisplayNameFor(model => model.DaNgayTao)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.StSalt)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.InMaQuyenHanNavigation)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.StMaSinhVienNavigation)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BiTrangThai)
-            </th>
             <th></th>
         </tr>
     </thead>
-
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StMatKhau)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DaNgayDangNhap)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DaNgayTao)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InMaQuyenHanNavigation.StGhiChu)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StMaSinhVienNavigation.StMaSinhVien)
-                </td>
-                @if (item.BiTrangThai)
-                {
-                    <td>
-                        <p>Đang hoạt động</p>
-                    </td>
-                }
-                else
-                {
-                    <td>
-                        <p>Khóa</p>
-                    </td>
-                }
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.InMaTaiKhoan">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.InMaTaiKhoan">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.InMaTaiKhoan">Delete</a>
-                </td>
-            </tr>
-        }
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StMatKhau)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BiTrangThai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DaNgayDangNhap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DaNgayTao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StSalt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InMaQuyenHanNavigation.StGhiChu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StMaSinhVienNavigation.StMaSinhVien)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.InMaTaiKhoan">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.InMaTaiKhoan">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.InMaTaiKhoan">Delete</a>
+            </td>
+        </tr>
+}
     </tbody>
 </table>

@@ -12,10 +12,10 @@ namespace DoAn2_ASP.Models
         public int StMaDonMuon { get; set; }
         public int StMaSach { get; set; }
         public short InSoLuong { get; set; }
-        //public DateTime DaNgayMuon { get; set; }
-        //public DateTime DaNgayTra { get; set; }
+        public DateTime? DaNgayMuon { get; set; }
+        public DateTime? DaNgayTra { get; set; }
+        public bool? BiTrangThai { get; set; }
 
-        public bool BiTrangThai { get; set; }
         public virtual TblDonMuonSach StMaDonMuonNavigation { get; set; }
         public virtual TblSach StMaSachNavigation { get; set; }
     }

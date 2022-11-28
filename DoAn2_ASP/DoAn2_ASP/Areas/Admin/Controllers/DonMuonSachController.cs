@@ -41,7 +41,9 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
+            var chitiet = _context.TblChiTietDonMuon.AsNoTracking().Include(t => t.StMaSachNavigation).Where(m => m.StMaDonMuon == id).ToList();
+            ViewBag.chitiet = chitiet;
+            ViewData["StMaSinhVien"] = new SelectList(_context.TblSinhVien, "StMaSinhVien", "StMaSinhVien", tblDonMuonSach.StMaSinhVien);
             return View(tblDonMuonSach);
         }
 
@@ -57,7 +59,7 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StMaDonMuon,StMaSinhVien,StMaKhoa")] TblDonMuonSach tblDonMuonSach)
+        public async Task<IActionResult> Create([Bind("StMaDonMuon,StMaSinhVien,StMaKhoa,DaNgayMuon,DaNgayTra,BiTrangThai")] TblDonMuonSach tblDonMuonSach)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +93,7 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StMaDonMuon,StMaSinhVien,StMaKhoa")] TblDonMuonSach tblDonMuonSach)
+        public async Task<IActionResult> Edit(int id, [Bind("StMaDonMuon,StMaSinhVien,StMaKhoa,DaNgayMuon,DaNgayTra,BiTrangThai")] TblDonMuonSach tblDonMuonSach)
         {
             if (id != tblDonMuonSach.StMaDonMuon)
             {

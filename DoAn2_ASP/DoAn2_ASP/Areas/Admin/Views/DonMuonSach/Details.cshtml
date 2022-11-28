@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    List<TblChiTietDonMuon> chitiet = ViewBag.chitiet;
 }
 
 <h1>Details</h1>
@@ -10,22 +11,83 @@
 <div>
     <h4>TblDonMuonSach</h4>
     <hr />
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.StMaKhoa)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.StMaKhoa)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.StMaSinhVienNavigation)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.StMaSinhVienNavigation.StMaSinhVien)
+    </dd>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit" asp-route-id="@Model.StMaDonMuon">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="StMaDonMuon" />
+                <div class="form-group">
+                    <input type="hidden" asp-for="StMaSinhVien" class="form-control" asp-items="ViewBag.StMaSinhVien"></input>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" asp-for="StMaKhoa" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="DaNgayMuon" class="control-label"></label>
+                    <input asp-for="DaNgayMuon" class="form-control" />
+                    <span asp-validation-for="DaNgayMuon" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DaNgayTra" class="control-label"></label>
+                    <input asp-for="DaNgayTra" class="form-control" />
+                    <span asp-validation-for="DaNgayTra" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="BiTrangThai" /> @Html.DisplayNameFor(model => model.BiTrangThai)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StMaKhoa)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StMaKhoa)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StMaSinhVienNavigation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StMaSinhVienNavigation.StMaSinhVien)
-        </dd>
+
+        @if (chitiet != null && chitiet.Count() > 0)
+        {
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <tbody>
+                        <tr>
+                            <th>Mã sách</th>
+                            <th>Tên sách</th>
+                        </tr>
+                        @foreach (var item in chitiet)
+                        {
+                            <tr>
+                                <td>@item.StMaSach</td>
+                                <td>@item.StMaSachNavigation.StTenSach</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <br />
+                <br />
+                <br />
+                <br />
+                <hr />
+                <div id="records_table">
+                </div>
+            </div>
+        }
+
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.StMaDonMuon">Edit</a> |
+
     <a asp-action="Index">Back to List</a>
 </div>

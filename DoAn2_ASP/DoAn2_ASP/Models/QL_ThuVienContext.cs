@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using DoAn2_ASP.ModelView;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
 // If you have enabled NRTs for your project, then un-comment the following line:
@@ -54,13 +53,15 @@ namespace DoAn2_ASP.Models
 
                 entity.Property(e => e.StMaSach).HasColumnName("St_MaSach");
 
-                //entity.Property(e => e.DaNgayMuon)
-                ////    .HasColumnName("Da_NgayMuon")
-                //    .HasColumnType("date");
+                entity.Property(e => e.BiTrangThai).HasColumnName("Bi_TrangThai");
 
-               // entity.Property(e => e.DaNgayTra)
-               //     .HasColumnName("Da_NgayTra")
-               //     .HasColumnType("date");
+                entity.Property(e => e.DaNgayMuon)
+                    .HasColumnName("Da_NgayMuon")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.DaNgayTra)
+                    .HasColumnName("Da_NgayTra")
+                    .HasColumnType("date");
 
                 entity.Property(e => e.InSoLuong).HasColumnName("in_SoLuong");
 
@@ -85,6 +86,16 @@ namespace DoAn2_ASP.Models
 
                 entity.Property(e => e.StMaDonMuon).HasColumnName("St_MaDonMuon");
 
+                entity.Property(e => e.BiTrangThai).HasColumnName("Bi_TrangThai");
+
+                entity.Property(e => e.DaNgayMuon)
+                    .HasColumnName("Da_NgayMuon")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.DaNgayTra)
+                    .HasColumnName("Da_NgayTra")
+                    .HasColumnType("date");
+
                 entity.Property(e => e.StMaKhoa)
                     .IsRequired()
                     .HasColumnName("St_MaKhoa")
@@ -101,15 +112,6 @@ namespace DoAn2_ASP.Models
                     .HasForeignKey(d => d.StMaSinhVien)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Tbl_DonMuonSach_Tbl_SinhVien");
-
-                entity.Property(e => e.DaNgayMuon)
-                    .HasColumnName("Da_NgayMuon")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.DaNgayTra)
-                    .HasColumnName("Da_NgayTra")
-                    .HasColumnType("date");
-                entity.Property(e => e.BiTrangThai).HasColumnName("Bi_TrangThai");
             });
 
             modelBuilder.Entity<TblKeSach>(entity =>
@@ -181,9 +183,7 @@ namespace DoAn2_ASP.Models
 
                 entity.Property(e => e.InSoLuong).HasColumnName("In_SoLuong");
 
-                entity.Property(e => e.StAnh)
-                    .HasColumnName("St_Anh")
-                    .HasMaxLength(50);
+                entity.Property(e => e.StAnh).HasColumnName("St_Anh");
 
                 entity.Property(e => e.StMaKeSach).HasColumnName("St_MaKeSach");
 
@@ -193,18 +193,15 @@ namespace DoAn2_ASP.Models
 
                 entity.Property(e => e.StTenSach)
                     .IsRequired()
-                    .HasColumnName("St_TenSach")
-                    .HasMaxLength(50);
+                    .HasColumnName("St_TenSach");
 
                 entity.Property(e => e.StTinhTrang)
                     .IsRequired()
-                    .HasColumnName("St_TinhTrang")
-                    .HasMaxLength(50);
+                    .HasColumnName("St_TinhTrang");
 
                 entity.Property(e => e.StTomTat)
                     .IsRequired()
-                    .HasColumnName("St_TomTat")
-                    .HasMaxLength(50);
+                    .HasColumnName("St_TomTat");
 
                 entity.HasOne(d => d.StMaKeSachNavigation)
                     .WithMany(p => p.TblSach)
@@ -300,15 +297,13 @@ namespace DoAn2_ASP.Models
                     .HasColumnName("St_MaSinhVien")
                     .HasMaxLength(9);
 
-                entity.Property(e => e.StSalt)
-                    .IsRequired()
-                    .HasColumnName("St_Salt")
-                    .HasMaxLength(50);
-
                 entity.Property(e => e.StMatKhau)
                     .IsRequired()
-                    .HasColumnName("St_MatKhau")
-                    .HasMaxLength(50);
+                    .HasColumnName("St_MatKhau");
+
+                entity.Property(e => e.StSalt)
+                    .IsRequired()
+                    .HasColumnName("St_Salt");
 
                 entity.HasOne(d => d.InMaQuyenHanNavigation)
                     .WithMany(p => p.TblTaiKhoan)
@@ -327,9 +322,5 @@ namespace DoAn2_ASP.Models
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-
-        public DbSet<DoAn2_ASP.ModelView.RegisterVM> RegisterVM { get; set; }
-
-        public DbSet<DoAn2_ASP.ModelView.LoginVM> LoginVM { get; set; }
     }
 }

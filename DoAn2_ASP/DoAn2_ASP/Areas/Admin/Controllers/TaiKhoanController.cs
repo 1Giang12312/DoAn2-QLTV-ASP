@@ -22,13 +22,6 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         // GET: Admin/TaiKhoan
         public async Task<IActionResult> Index()
         {
-            ViewData["QuyenTruyCap"] = new SelectList(_context.TblQuyenHan, "InMaQuyenHan", "StTenQuyenHan");
-
-            List<SelectListItem> lsTrangThai = new List<SelectListItem>();
-            lsTrangThai.Add(new SelectListItem() { Text = "Đang hoạt động", Value = "1" });
-            lsTrangThai.Add(new SelectListItem() { Text = "Khóa", Value = "0" });
-            ViewData["lsTrangThai"] = lsTrangThai;
-
             var qL_ThuVienContext = _context.TblTaiKhoan.Include(t => t.InMaQuyenHanNavigation).Include(t => t.StMaSinhVienNavigation);
             return View(await qL_ThuVienContext.ToListAsync());
         }
@@ -66,7 +59,7 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("InMaTaiKhoan,StMaSinhVien,StMatKhau,InMaQuyenHan,BiTrangThai,DaNgayDangNhap,DaNgayTao")] TblTaiKhoan tblTaiKhoan)
+        public async Task<IActionResult> Create([Bind("InMaTaiKhoan,StMaSinhVien,StMatKhau,InMaQuyenHan,BiTrangThai,DaNgayDangNhap,DaNgayTao,StSalt")] TblTaiKhoan tblTaiKhoan)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +95,7 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("InMaTaiKhoan,StMaSinhVien,StMatKhau,InMaQuyenHan,BiTrangThai,DaNgayDangNhap,DaNgayTao")] TblTaiKhoan tblTaiKhoan)
+        public async Task<IActionResult> Edit(int id, [Bind("InMaTaiKhoan,StMaSinhVien,StMatKhau,InMaQuyenHan,BiTrangThai,DaNgayDangNhap,DaNgayTao,StSalt")] TblTaiKhoan tblTaiKhoan)
         {
             if (id != tblTaiKhoan.InMaTaiKhoan)
             {

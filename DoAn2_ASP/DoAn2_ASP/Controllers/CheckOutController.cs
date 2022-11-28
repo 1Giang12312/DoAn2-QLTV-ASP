@@ -67,7 +67,7 @@ namespace DoAn2_ASP.Controllers
                 model.FullName = sinhvien.StTenSinhVien;
                 model.Email = sinhvien.StGmail;
                 model.Phone = sinhvien.StSoDienThoai;
-                model.MaKhoa =sinhvien.StMaKhoa;
+                model.MaKhoa = sinhvien.StMaKhoa;
             }
             try
             {
@@ -80,12 +80,9 @@ namespace DoAn2_ASP.Controllers
                     donmuon.DaNgayMuon = donMuon.NgayMuon;
                     donmuon.DaNgayTra = donMuon.NgayTra;
                     donmuon.BiTrangThai = false;
-
-
                     _context.Add(donmuon);
                     _context.SaveChanges();
                     //tao danh sach don hang
-
                     foreach (var item in cart)
                     {
 
@@ -95,8 +92,8 @@ namespace DoAn2_ASP.Controllers
                         chitiet.InSoLuong = (short)item.amount;
                         //chitiet.BiTrangThai = false;
                         _context.Add(chitiet);
-                        _context.SaveChanges();
                     }
+                    _context.SaveChanges();
                     //clear gio hang
                     HttpContext.Session.Remove("GioSach");
                     //Xuat thong bao
@@ -112,6 +109,37 @@ namespace DoAn2_ASP.Controllers
             }
             ViewBag.GioSach = cart;
             return View(model);
+
+        }
+        //[Route("dat-hang-thanh-cong.html",Name = "Success")]
+        public IActionResult Success()
+        {
+            try
+            {
+                var taikhoanID = HttpContext.Session.GetString("StMaSinhVien");
+                if (string.IsNullOrEmpty(taikhoanID))
+                {
+                    return RedirectToAction("Login", "Accounts", new { returnUrl = "/Success" });
+                }
+                var sinhvien = _context.TblSinhVien.AsNoTracking().SingleOrDefault(x => x.StMaSinhVien == taikhoanID);
+                var donhang = _context.TblDonMuonSach
+                    .Where(x => x.StMaSinhVien ==taikhoanID)
+                    .FirstOrDefault();
+
+                DangKyMuonMV dkMuon = new DangKyMuonMV();
+                dkMuon.StMaSinhVien = sinhvien.StMaSinhVien;
+                dkMuon.FullName = sinhvien.StTenSinhVien;
+                dkMuon.Email = sinhvien.StGmail;
+                dkMuon.Phone = sinhvien.StSoDienThoai;
+                dkMuon.NgayMuon = (DateTime)donhang.DaNgayMuon;
+                dkMuon.NgayTra = donhang.DaNgayTra;
+                return View(dkMuon);
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
+
 }

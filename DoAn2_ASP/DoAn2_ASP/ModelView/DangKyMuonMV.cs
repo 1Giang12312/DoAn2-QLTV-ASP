@@ -18,6 +18,7 @@ namespace DoAn2_ASP.ModelView
         [Required(ErrorMessage = "Vui lòng nhập số điện thoại")]
         public string Phone { get; set; }
         [Required(ErrorMessage = "Vui lòng nhập ngày mượn")]
+
         public DateTime NgayMuon { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập ngày trả")]

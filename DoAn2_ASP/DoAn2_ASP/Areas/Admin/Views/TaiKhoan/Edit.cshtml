@@ -1,7 +1,7 @@
 ﻿@model DoAn2_ASP.Models.TblTaiKhoan
 
 @{
-    ViewData["Title"] = "Sửa tài khoản" + Model.StMaSinhVienNavigation.StTenSinhVien;
+    ViewData["Title"] = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -43,6 +43,11 @@
                 <label asp-for="DaNgayTao" class="control-label"></label>
                 <input asp-for="DaNgayTao" class="form-control" />
                 <span asp-validation-for="DaNgayTao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StSalt" class="control-label"></label>
+                <input asp-for="StSalt" class="form-control" />
+                <span asp-validation-for="StSalt" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

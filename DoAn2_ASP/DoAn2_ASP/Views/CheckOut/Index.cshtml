@@ -3,11 +3,12 @@
     ViewData["Title"] = "Đăng kí mượn";
     Layout = "~/Views/Shared/_Layout.cshtml";
     List<DoAn2_ASP.ModelView.CartItem> Carts = ViewBag.GioSach;
+    DateTime date = DateTime.Now;
 }
 
 
 
-
+ 
 
 <main class="main-content">
     <div class="breadcrumb-area breadcrumb-height" data-bg-image="/assets/images/banner/2-1-1920x523.jpg">
@@ -59,6 +60,7 @@
                                     <label asp-for="NgayTra" class="control-label"></label>
                                     <input asp-for="NgayTra" class="form-control" />
                                     <span asp-validation-for="NgayTra" class="text-danger"></span>
+
                                 </div>
                             </div>
                         </div>

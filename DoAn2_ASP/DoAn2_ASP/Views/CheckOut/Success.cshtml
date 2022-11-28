@@ -1,0 +1,52 @@
+﻿@model DoAn2_ASP.ModelView.DangKyMuonMV
+@{
+    ViewData["Title"] = "Mua hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<main class="main-content">
+    <div class="breadcrumb-area breadcrumb-height" data-bg-image="/assets/images/banner/2-1-1920x523.jpg">
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-item">
+                        <h2 class="breadcrumb-heading">THÔNG TIN MUA HÀNG</h2>
+                        <ul>
+                            <li>
+                                <a href="/">Trang chủ <i class="pe-7s-angle-right"></i></a>
+                            </li>
+                            <li>Thông tin đơn mượn</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="checkout-area section-space-y-axis-100">
+        <div class="container">
+            <form>
+
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+
+                        <div class="checkbox-form">
+                            <h1>Đăng kí mượn thành công</h1>
+                            <br />
+                            <h3>Thông tin đơn mượn</h3>
+                            <p>Mã số sinh viên: @Model.StMaSinhVien</p>
+                            <p>Tên sinh viên: @Model.FullName</p>
+                            <p>Số điện thoại: @Model.Phone</p>
+                            <p>Email: @Model.Email</p>
+                            <p>Ngày mượn: @Model.NgayMuon</p>
+                            <p>Ngày trả: @Model.NgayTra</p>
+                            <p>Lưu ý: Hãy trả trước ngày trả nếu không tài khoản sẽ + 1 điểm phạt</p>
+                            <br />
+                            Để xem chi tiết đơn hàng vui lòng truy cập vào <a asp-controller="Accounts" asp-action="Dashboard"><strong>Tài khoản cá nhân.</strong></a> Cần hỗ trợ? Liên hệ với chúng tôi qua số điện thoại 0963102916
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</main>
