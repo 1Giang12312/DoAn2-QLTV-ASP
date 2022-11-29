@@ -6,10 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DoAn2_ASP.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 
 namespace DoAn2_ASP.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    
     public class TaiKhoanController : Controller
     {
         private readonly QL_ThuVienContext _context;
@@ -18,12 +21,25 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         {
             _context = context;
         }
+        public bool XacNhanRole()
+        {
+            var taikhoanID = HttpContext.Session.GetString("StMaSinhVien");
+            if (_context.TblTaiKhoan.Where(t => t.StMaSinhVien == taikhoanID).Where(b => b.InMaQuyenHan == 1).Count() > 0)
+            {
+                return true;
+            }
+            else return false;
+        }
 
         // GET: Admin/TaiKhoan
         public async Task<IActionResult> Index()
         {
-            var qL_ThuVienContext = _context.TblTaiKhoan.Include(t => t.InMaQuyenHanNavigation).Include(t => t.StMaSinhVienNavigation);
-            return View(await qL_ThuVienContext.ToListAsync());
+            if (XacNhanRole() == true)
+            {
+                var qL_ThuVienContext = _context.TblTaiKhoan.Include(t => t.InMaQuyenHanNavigation).Include(t => t.StMaSinhVienNavigation);
+                return View(await qL_ThuVienContext.ToListAsync());
+            }
+            return NotFound();
         }
 
         // GET: Admin/TaiKhoan/Details/5
@@ -42,16 +58,24 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
-            return View(tblTaiKhoan);
+            if (XacNhanRole() == true)
+            {
+                return View(tblTaiKhoan);
+            }
+            return NotFound();
         }
 
         // GET: Admin/TaiKhoan/Create
         public IActionResult Create()
         {
-            ViewData["InMaQuyenHan"] = new SelectList(_context.TblQuyenHan, "InMaQuyenHan", "StGhiChu");
-            ViewData["StMaSinhVien"] = new SelectList(_context.TblSinhVien, "StMaSinhVien", "StMaSinhVien");
-            return View();
+            if (XacNhanRole() == true)
+            {
+                ViewData["InMaQuyenHan"] = new SelectList(_context.TblQuyenHan, "InMaQuyenHan", "StGhiChu");
+                ViewData["StMaSinhVien"] = new SelectList(_context.TblSinhVien, "StMaSinhVien", "StMaSinhVien");
+                return View();
+            }
+            return NotFound();
+            
         }
 
         // POST: Admin/TaiKhoan/Create
@@ -61,33 +85,43 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("InMaTaiKhoan,StMaSinhVien,StMatKhau,InMaQuyenHan,BiTrangThai,DaNgayDangNhap,DaNgayTao,StSalt")] TblTaiKhoan tblTaiKhoan)
         {
-            if (ModelState.IsValid)
+            if (XacNhanRole() == true)
             {
-                _context.Add(tblTaiKhoan);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    _context.Add(tblTaiKhoan);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                ViewData["InMaQuyenHan"] = new SelectList(_context.TblQuyenHan, "InMaQuyenHan", "StGhiChu", tblTaiKhoan.InMaQuyenHan);
+                ViewData["StMaSinhVien"] = new SelectList(_context.TblSinhVien, "StMaSinhVien", "StMaSinhVien", tblTaiKhoan.StMaSinhVien);
+                return View(tblTaiKhoan);
             }
-            ViewData["InMaQuyenHan"] = new SelectList(_context.TblQuyenHan, "InMaQuyenHan", "StGhiChu", tblTaiKhoan.InMaQuyenHan);
-            ViewData["StMaSinhVien"] = new SelectList(_context.TblSinhVien, "StMaSinhVien", "StMaSinhVien", tblTaiKhoan.StMaSinhVien);
-            return View(tblTaiKhoan);
+            return NotFound();
+            
         }
 
         // GET: Admin/TaiKhoan/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var tblTaiKhoan = await _context.TblTaiKhoan.FindAsync(id);
-            if (tblTaiKhoan == null)
-            {
-                return NotFound();
+                var tblTaiKhoan = await _context.TblTaiKhoan.FindAsync(id);
+                if (tblTaiKhoan == null)
+                {
+                    return NotFound();
+                }
+                ViewData["InMaQuyenHan"] = new SelectList(_context.TblQuyenHan, "InMaQuyenHan", "StGhiChu", tblTaiKhoan.InMaQuyenHan);
+                ViewData["StMaSinhVien"] = new SelectList(_context.TblSinhVien, "StMaSinhVien", "StMaSinhVien", tblTaiKhoan.StMaSinhVien);
+                return View(tblTaiKhoan);
             }
-            ViewData["InMaQuyenHan"] = new SelectList(_context.TblQuyenHan, "InMaQuyenHan", "StGhiChu", tblTaiKhoan.InMaQuyenHan);
-            ViewData["StMaSinhVien"] = new SelectList(_context.TblSinhVien, "StMaSinhVien", "StMaSinhVien", tblTaiKhoan.StMaSinhVien);
-            return View(tblTaiKhoan);
+            return NotFound();
+            
         }
 
         // POST: Admin/TaiKhoan/Edit/5
@@ -130,21 +164,26 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         // GET: Admin/TaiKhoan/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var tblTaiKhoan = await _context.TblTaiKhoan
-                .Include(t => t.InMaQuyenHanNavigation)
-                .Include(t => t.StMaSinhVienNavigation)
-                .FirstOrDefaultAsync(m => m.InMaTaiKhoan == id);
-            if (tblTaiKhoan == null)
-            {
-                return NotFound();
-            }
+                var tblTaiKhoan = await _context.TblTaiKhoan
+                    .Include(t => t.InMaQuyenHanNavigation)
+                    .Include(t => t.StMaSinhVienNavigation)
+                    .FirstOrDefaultAsync(m => m.InMaTaiKhoan == id);
+                if (tblTaiKhoan == null)
+                {
+                    return NotFound();
+                }
 
-            return View(tblTaiKhoan);
+                return View(tblTaiKhoan);
+            }
+            return NotFound();
+            
         }
 
         // POST: Admin/TaiKhoan/Delete/5
@@ -152,10 +191,15 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var tblTaiKhoan = await _context.TblTaiKhoan.FindAsync(id);
-            _context.TblTaiKhoan.Remove(tblTaiKhoan);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if (XacNhanRole() == true)
+            {
+                var tblTaiKhoan = await _context.TblTaiKhoan.FindAsync(id);
+                _context.TblTaiKhoan.Remove(tblTaiKhoan);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return NotFound();
+            
         }
 
         private bool TblTaiKhoanExists(int id)

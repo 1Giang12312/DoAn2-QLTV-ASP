@@ -2012,3 +2012,4 @@ C:\Users\Administrator\Desktop\saoluu2811\DoAn2_ASP\obj\Debug\netcoreapp3.1\Razo
 C:\Users\Administrator\Desktop\saoluu2811\DoAn2_ASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\DonMuonSach\Details.cshtml.g.cs
 C:\Users\Administrator\Desktop\saoluu2811\DoAn2_ASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\DonMuonSach\Edit.cshtml.g.cs
 C:\Users\Administrator\Desktop\saoluu2811\DoAn2_ASP\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\DonMuonSach\Index.cshtml.g.cs
+C:\Users\Administrator\Desktop\saoluu2811\DoAn2_ASP\obj\Debug\netcoreapp3.1\Razor\Views\Accounts\ThongBao.cshtml.g.cs

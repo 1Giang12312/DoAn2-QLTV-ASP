@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DoAn2_ASP.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace DoAn2_ASP.Areas.Admin.Controllers
 {
@@ -13,7 +14,15 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
     public class TacGiaController : Controller
     {
         private readonly QL_ThuVienContext _context;
-
+        public bool XacNhanRole()
+        {
+            var taikhoanID = HttpContext.Session.GetString("StMaSinhVien");
+            if (_context.TblTaiKhoan.Where(t => t.StMaSinhVien == taikhoanID).Where(b => b.InMaQuyenHan == 1).Count() > 0)
+            {
+                return true;
+            }
+            else return false;
+        }
         public TacGiaController(QL_ThuVienContext context)
         {
             _context = context;
@@ -22,31 +31,46 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         // GET: Admin/TacGia
         public async Task<IActionResult> Index()
         {
-            return View(await _context.TblTacGia.ToListAsync());
+            if (XacNhanRole() == true)
+            {
+                return View(await _context.TblTacGia.ToListAsync());
+            }
+            return NotFound();
+            
         }
 
         // GET: Admin/TacGia/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var tblTacGia = await _context.TblTacGia
-                .FirstOrDefaultAsync(m => m.StMaTacGia == id);
-            if (tblTacGia == null)
-            {
-                return NotFound();
-            }
+                var tblTacGia = await _context.TblTacGia
+                    .FirstOrDefaultAsync(m => m.StMaTacGia == id);
+                if (tblTacGia == null)
+                {
+                    return NotFound();
+                }
 
-            return View(tblTacGia);
+                return View(tblTacGia);
+            }
+            return NotFound();
+           
         }
 
         // GET: Admin/TacGia/Create
         public IActionResult Create()
         {
-            return View();
+            if (XacNhanRole() == true)
+            {
+                return View();
+            }
+            return NotFound();
+            
         }
 
         // POST: Admin/TacGia/Create
@@ -68,17 +92,22 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         // GET: Admin/TacGia/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var tblTacGia = await _context.TblTacGia.FindAsync(id);
-            if (tblTacGia == null)
-            {
-                return NotFound();
+                var tblTacGia = await _context.TblTacGia.FindAsync(id);
+                if (tblTacGia == null)
+                {
+                    return NotFound();
+                }
+                return View(tblTacGia);
             }
-            return View(tblTacGia);
+            return NotFound();
+           
         }
 
         // POST: Admin/TacGia/Edit/5
@@ -119,19 +148,24 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         // GET: Admin/TacGia/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var tblTacGia = await _context.TblTacGia
-                .FirstOrDefaultAsync(m => m.StMaTacGia == id);
-            if (tblTacGia == null)
-            {
-                return NotFound();
-            }
+                var tblTacGia = await _context.TblTacGia
+                    .FirstOrDefaultAsync(m => m.StMaTacGia == id);
+                if (tblTacGia == null)
+                {
+                    return NotFound();
+                }
 
-            return View(tblTacGia);
+                return View(tblTacGia);
+            }
+            return NotFound();
+            
         }
 
         // POST: Admin/TacGia/Delete/5
@@ -139,10 +173,15 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var tblTacGia = await _context.TblTacGia.FindAsync(id);
-            _context.TblTacGia.Remove(tblTacGia);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if (XacNhanRole() == true)
+            {
+                var tblTacGia = await _context.TblTacGia.FindAsync(id);
+                _context.TblTacGia.Remove(tblTacGia);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return NotFound();
+            
         }
 
         private bool TblTacGiaExists(int id)
