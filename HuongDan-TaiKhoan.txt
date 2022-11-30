@@ -1,0 +1,11 @@
+﻿PHẢI ĐĂNG NHẬP TÀI KHOẢN QUYỀN ADMIN MỚI CÓ THỂ VÀO TRANG ADMIN
+Tài khoản quyền admin và quyền user:
+TK:DPM195206
+MK:321321
+Tài khoản quyền user:
+TK:DPM195207
+MK:123123
+thêm /admin vào cuối chuỗi url để vào trang admin
+
+Add cơ sở dữ liệu và sửa đường dẫn "Server=(Tên server của bạn);Database=QL_ThuVien;Integrated Security=true;"
+trong file appsettings.json trước khi chạy chương trình

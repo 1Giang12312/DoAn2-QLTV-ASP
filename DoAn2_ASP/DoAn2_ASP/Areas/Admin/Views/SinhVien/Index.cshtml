@@ -10,7 +10,7 @@
 <h1>Danh sách sinh viên trang @CurrentPage</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Thêm mới</a>
 </p>
 <table class="table">
     <thead>
@@ -52,9 +52,9 @@
                 @Html.DisplayFor(modelItem => item.StMaKhoaNavigation.StTenKhoa)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.StMaSinhVien">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.StMaSinhVien">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.StMaSinhVien">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.StMaSinhVien">Chỉnh sửa</a> |
+                <a asp-action="Details" asp-route-id="@item.StMaSinhVien">Chi tiết</a> |
+                <a asp-action="Delete" asp-route-id="@item.StMaSinhVien">Xóa</a>
             </td>
         </tr>
 }

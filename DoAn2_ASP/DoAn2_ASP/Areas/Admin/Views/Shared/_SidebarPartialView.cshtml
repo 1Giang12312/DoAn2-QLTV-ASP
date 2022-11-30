@@ -1,6 +1,6 @@
 ﻿<div class="sidebar pe-4 pb-3">
     <nav class="navbar bg-light navbar-light">
-        <a href="index.html" class="navbar-brand mx-4 mb-3">
+        <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="navbar-brand mx-4 mb-3">
             <h3 class="text-info">Quản Trị Hệ Thống</h3>
         </a>
         <div class="d-flex align-items-center ms-4 mb-4">
@@ -26,8 +26,6 @@
             <a asp-area="Admin" asp-controller="Khoa" asp-action="Index" class="nav-item nav-link"><i class="fa fa-keyboard me-2 text-danger"></i>Khoa</a>
             <a asp-area="Admin" asp-controller="QuyenHan" asp-action="Index" class="nav-item nav-link"><i class="fa fa-table me-2 text-warning"></i>Quyền hạn</a>
             <a asp-area="Admin" asp-controller="DonMuonSach" asp-action="Index" class="nav-item nav-link"><i class="fa fa-table me-2 text-warning"></i>Mượn/trả sách</a>
-            <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2 text-info"></i>Thống kê</a>
-
-        </div>
+            </div>
     </nav>
 </div>

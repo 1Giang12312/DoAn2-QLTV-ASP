@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DoAn2_ASP.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace DoAn2_ASP.Areas.Admin.Controllers
 {
@@ -20,33 +21,57 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         }
 
         // GET: Admin/KeSach
+        public bool XacNhanRole()
+        {
+            var taikhoanID = HttpContext.Session.GetString("StMaSinhVien");
+            if (_context.TblTaiKhoan.Where(t => t.StMaSinhVien == taikhoanID).Where(b => b.InMaQuyenHan == 1).Count() > 0)
+            {
+                return true;
+            }
+            else return false;
+        }
         public async Task<IActionResult> Index()
         {
-            return View(await _context.TblKeSach.ToListAsync());
+            if (XacNhanRole() == true)
+            {
+                return View(await _context.TblKeSach.ToListAsync());
+            }
+            return NotFound();
+            
         }
 
         // GET: Admin/KeSach/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var tblKeSach = await _context.TblKeSach
-                .FirstOrDefaultAsync(m => m.StMaKeSach == id);
-            if (tblKeSach == null)
-            {
-                return NotFound();
-            }
+                var tblKeSach = await _context.TblKeSach
+                    .FirstOrDefaultAsync(m => m.StMaKeSach == id);
+                if (tblKeSach == null)
+                {
+                    return NotFound();
+                }
 
-            return View(tblKeSach);
+                return View(tblKeSach);
+            }
+            return NotFound();
+           
         }
 
         // GET: Admin/KeSach/Create
         public IActionResult Create()
         {
-            return View();
+            if (XacNhanRole() == true)
+            {
+                return View();
+            }
+            return NotFound();
+            
         }
 
         // POST: Admin/KeSach/Create
@@ -56,29 +81,39 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("StMaKeSach,StTenKeSach")] TblKeSach tblKeSach)
         {
-            if (ModelState.IsValid)
+            if (XacNhanRole() == true)
             {
-                _context.Add(tblKeSach);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    _context.Add(tblKeSach);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                return View(tblKeSach);
             }
-            return View(tblKeSach);
+            return NotFound();
+           
         }
 
         // GET: Admin/KeSach/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var tblKeSach = await _context.TblKeSach.FindAsync(id);
-            if (tblKeSach == null)
-            {
-                return NotFound();
+                var tblKeSach = await _context.TblKeSach.FindAsync(id);
+                if (tblKeSach == null)
+                {
+                    return NotFound();
+                }
+                return View(tblKeSach);
             }
-            return View(tblKeSach);
+            return NotFound();
+            
         }
 
         // POST: Admin/KeSach/Edit/5
@@ -88,50 +123,60 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("StMaKeSach,StTenKeSach")] TblKeSach tblKeSach)
         {
-            if (id != tblKeSach.StMaKeSach)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id != tblKeSach.StMaKeSach)
+                {
+                    return NotFound();
+                }
 
-            if (ModelState.IsValid)
-            {
-                try
+                if (ModelState.IsValid)
                 {
-                    _context.Update(tblKeSach);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TblKeSachExists(tblKeSach.StMaKeSach))
+                    try
                     {
-                        return NotFound();
+                        _context.Update(tblKeSach);
+                        await _context.SaveChangesAsync();
                     }
-                    else
+                    catch (DbUpdateConcurrencyException)
                     {
-                        throw;
+                        if (!TblKeSachExists(tblKeSach.StMaKeSach))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
                     }
+                    return RedirectToAction(nameof(Index));
                 }
-                return RedirectToAction(nameof(Index));
+                return View(tblKeSach);
             }
-            return View(tblKeSach);
+            return NotFound();
+            
         }
 
         // GET: Admin/KeSach/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var tblKeSach = await _context.TblKeSach
-                .FirstOrDefaultAsync(m => m.StMaKeSach == id);
-            if (tblKeSach == null)
-            {
-                return NotFound();
-            }
+                var tblKeSach = await _context.TblKeSach
+                    .FirstOrDefaultAsync(m => m.StMaKeSach == id);
+                if (tblKeSach == null)
+                {
+                    return NotFound();
+                }
 
-            return View(tblKeSach);
+                return View(tblKeSach);
+            }
+            return NotFound();
+            
         }
 
         // POST: Admin/KeSach/Delete/5
@@ -139,10 +184,15 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var tblKeSach = await _context.TblKeSach.FindAsync(id);
-            _context.TblKeSach.Remove(tblKeSach);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if (XacNhanRole() == true)
+            {
+                var tblKeSach = await _context.TblKeSach.FindAsync(id);
+                _context.TblKeSach.Remove(tblKeSach);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return NotFound();
+            
         }
 
         private bool TblKeSachExists(int id)

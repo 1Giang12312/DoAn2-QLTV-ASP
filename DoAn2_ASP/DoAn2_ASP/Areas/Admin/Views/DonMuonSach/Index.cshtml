@@ -5,16 +5,22 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Danh sách đơn mượn</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Thêm mới</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.StMaKhoa)
+                Họ tên
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StMaSinhVienNavigation)
+            </th>
+            <th>
+                Khoa
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DaNgayMuon)
@@ -25,9 +31,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.BiTrangThai)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StMaSinhVienNavigation)
-            </th>
+
+
             <th></th>
         </tr>
     </thead>
@@ -35,7 +40,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.StMaKhoa)
+                @Html.DisplayFor(modelItem => item.StMaSinhVienNavigation.StTenSinhVien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StMaSinhVienNavigation.StMaSinhVien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StMaSinhVienNavigation.StMaKhoaNavigation.StTenKhoa)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DaNgayMuon)
@@ -46,12 +57,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.BiTrangThai)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StMaSinhVienNavigation.StMaSinhVien)
-            </td>
+
+
             <td>
                 <a asp-action="Details" asp-route-id="@item.StMaDonMuon">Trả sách</a>
-               
+
             </td>
         </tr>
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DoAn2_ASP.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace DoAn2_ASP.Areas.Admin.Controllers
 {
@@ -20,33 +21,59 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         }
 
         // GET: Admin/LoaiSach
+        public bool XacNhanRole()
+        {
+            var taikhoanID = HttpContext.Session.GetString("StMaSinhVien");
+            if (_context.TblTaiKhoan.Where(t => t.StMaSinhVien == taikhoanID).Where(b => b.InMaQuyenHan == 1).Count() > 0)
+            {
+                return true;
+            }
+            else return false;
+        }
         public async Task<IActionResult> Index()
         {
-            return View(await _context.TblLoaiSach.ToListAsync());
-        }
+            if (XacNhanRole() == true)
+            {
 
+                return View(await _context.TblLoaiSach.ToListAsync());
+            }
+            return NotFound();
+        }
+        
         // GET: Admin/LoaiSach/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var tblLoaiSach = await _context.TblLoaiSach
-                .FirstOrDefaultAsync(m => m.StMaLoaiSach == id);
-            if (tblLoaiSach == null)
-            {
-                return NotFound();
-            }
+                var tblLoaiSach = await _context.TblLoaiSach
+                    .FirstOrDefaultAsync(m => m.StMaLoaiSach == id);
+                if (tblLoaiSach == null)
+                {
+                    return NotFound();
+                }
 
-            return View(tblLoaiSach);
+                return View(tblLoaiSach);
+            }
+            return NotFound();
+
+            
         }
 
         // GET: Admin/LoaiSach/Create
         public IActionResult Create()
         {
-            return View();
+            if (XacNhanRole() == true)
+            {
+                return View();
+            }
+            return NotFound();
+
+            
         }
 
         // POST: Admin/LoaiSach/Create
@@ -56,29 +83,41 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("StMaLoaiSach,StTenSach")] TblLoaiSach tblLoaiSach)
         {
-            if (ModelState.IsValid)
+            if (XacNhanRole() == true)
             {
-                _context.Add(tblLoaiSach);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    _context.Add(tblLoaiSach);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                return View(tblLoaiSach);
             }
-            return View(tblLoaiSach);
+            return NotFound();
+
+            
         }
 
         // GET: Admin/LoaiSach/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var tblLoaiSach = await _context.TblLoaiSach.FindAsync(id);
-            if (tblLoaiSach == null)
-            {
-                return NotFound();
+                var tblLoaiSach = await _context.TblLoaiSach.FindAsync(id);
+                if (tblLoaiSach == null)
+                {
+                    return NotFound();
+                }
+                return View(tblLoaiSach);
             }
-            return View(tblLoaiSach);
+            return NotFound();
+
+            
         }
 
         // POST: Admin/LoaiSach/Edit/5
@@ -88,50 +127,62 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("StMaLoaiSach,StTenSach")] TblLoaiSach tblLoaiSach)
         {
-            if (id != tblLoaiSach.StMaLoaiSach)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id != tblLoaiSach.StMaLoaiSach)
+                {
+                    return NotFound();
+                }
 
-            if (ModelState.IsValid)
-            {
-                try
+                if (ModelState.IsValid)
                 {
-                    _context.Update(tblLoaiSach);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TblLoaiSachExists(tblLoaiSach.StMaLoaiSach))
+                    try
                     {
-                        return NotFound();
+                        _context.Update(tblLoaiSach);
+                        await _context.SaveChangesAsync();
                     }
-                    else
+                    catch (DbUpdateConcurrencyException)
                     {
-                        throw;
+                        if (!TblLoaiSachExists(tblLoaiSach.StMaLoaiSach))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
                     }
+                    return RedirectToAction(nameof(Index));
                 }
-                return RedirectToAction(nameof(Index));
+                return View(tblLoaiSach);
             }
-            return View(tblLoaiSach);
+            return NotFound();
+
+            
         }
 
         // GET: Admin/LoaiSach/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var tblLoaiSach = await _context.TblLoaiSach
-                .FirstOrDefaultAsync(m => m.StMaLoaiSach == id);
-            if (tblLoaiSach == null)
-            {
-                return NotFound();
-            }
+                var tblLoaiSach = await _context.TblLoaiSach
+                    .FirstOrDefaultAsync(m => m.StMaLoaiSach == id);
+                if (tblLoaiSach == null)
+                {
+                    return NotFound();
+                }
 
-            return View(tblLoaiSach);
+                return View(tblLoaiSach);
+            }
+            return NotFound();
+
+            
         }
 
         // POST: Admin/LoaiSach/Delete/5
@@ -139,10 +190,16 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var tblLoaiSach = await _context.TblLoaiSach.FindAsync(id);
-            _context.TblLoaiSach.Remove(tblLoaiSach);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if (XacNhanRole() == true)
+            {
+                var tblLoaiSach = await _context.TblLoaiSach.FindAsync(id);
+                _context.TblLoaiSach.Remove(tblLoaiSach);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return NotFound();
+
+            
         }
 
         private bool TblLoaiSachExists(int id)

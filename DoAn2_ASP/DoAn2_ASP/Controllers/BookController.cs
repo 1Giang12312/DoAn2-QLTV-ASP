@@ -23,7 +23,7 @@ namespace DoAn2_ASP.Controllers
             try
             {
                 var pageNumber = page == null || page <= 0 ? 1 : page.Value;
-                var pageSize = 20;
+                var pageSize = 6;
                 var lsSach = _context.TblSach.AsNoTracking().OrderByDescending(x => x.StMaSach);
                 PagedList<TblSach> models = new PagedList<TblSach>(lsSach, pageNumber, pageSize);
                 ViewBag.CurrentPage = pageNumber;

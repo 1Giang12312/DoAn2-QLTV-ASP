@@ -36,7 +36,7 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         {
             if (XacNhanRole() == true)
             {
-                var qL_ThuVienContext = _context.TblTaiKhoan.Include(t => t.InMaQuyenHanNavigation).Include(t => t.StMaSinhVienNavigation);
+                var qL_ThuVienContext = _context.TblTaiKhoan.Include(t => t.InMaQuyenHanNavigation).Include(t => t.StMaSinhVienNavigation).ThenInclude(t=>t.StMaKhoaNavigation);
                 return View(await qL_ThuVienContext.ToListAsync());
             }
             return NotFound();

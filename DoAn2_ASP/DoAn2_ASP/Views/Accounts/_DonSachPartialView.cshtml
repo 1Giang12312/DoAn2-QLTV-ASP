@@ -26,7 +26,7 @@
                             <td>Chưa trả</td>
                         }
                         <td>
-                            <a href="javascript:void(0)" class="xemdonsach"><span>Xem chi tiết</span></a>
+                            <a asp-action="ChiTietDonSach" asp-route-id="@item.StMaDonMuon">Xem chi tiết</a>
                         </td>
                     </tr>
                 }
@@ -44,4 +44,27 @@
 else
 {
     <p>Chưa có đơn sách!</p>
+}
+@section Scripts{
+    <script>
+    $(document).ready(function () {
+        $(".xemdonsach").click(function () {
+            var madon = $(this).attr("data-madon")
+            $.ajax({
+                url: '/Admin/DonMuonSach/Details',
+                datatype: "json",
+                type: "POST",
+                data: { id: madon },
+                async: true,
+                success: function (results) {
+                    $("#records_table").html("");
+                    $("#records_table").html(results);
+                },
+                error: function (xhr) {
+                    alert('error');
+                }
+            });
+        });
+    });
+    </script>
 }

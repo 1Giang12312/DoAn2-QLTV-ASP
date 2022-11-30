@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DoAn2_ASP.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace DoAn2_ASP.Areas.Admin.Controllers
 {
@@ -18,35 +19,58 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         {
             _context = context;
         }
-
+        public bool XacNhanRole()
+        {
+            var taikhoanID = HttpContext.Session.GetString("StMaSinhVien");
+            if (_context.TblTaiKhoan.Where(t => t.StMaSinhVien == taikhoanID).Where(b => b.InMaQuyenHan == 1).Count() > 0)
+            {
+                return true;
+            }
+            else return false;
+        }
         // GET: Admin/Khoa
         public async Task<IActionResult> Index()
         {
-            return View(await _context.TblKhoa.ToListAsync());
+            if (XacNhanRole() == true)
+            {
+                return View(await _context.TblKhoa.ToListAsync());
+            }
+            return NotFound();
+            
         }
 
         // GET: Admin/Khoa/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var tblKhoa = await _context.TblKhoa
-                .FirstOrDefaultAsync(m => m.StMaKhoa == id);
-            if (tblKhoa == null)
-            {
-                return NotFound();
-            }
+                var tblKhoa = await _context.TblKhoa
+                    .FirstOrDefaultAsync(m => m.StMaKhoa == id);
+                if (tblKhoa == null)
+                {
+                    return NotFound();
+                }
 
-            return View(tblKhoa);
+                return View(tblKhoa);
+            }
+            return NotFound();
+            
         }
 
         // GET: Admin/Khoa/Create
         public IActionResult Create()
         {
-            return View();
+            if (XacNhanRole() == true)
+            {
+                return View();
+            }
+            return NotFound();
+            
         }
 
         // POST: Admin/Khoa/Create
@@ -56,29 +80,39 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("StMaKhoa,StTenKhoa")] TblKhoa tblKhoa)
         {
-            if (ModelState.IsValid)
+            if (XacNhanRole() == true)
             {
-                _context.Add(tblKhoa);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    _context.Add(tblKhoa);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                return View(tblKhoa);
             }
-            return View(tblKhoa);
+            return NotFound();
+            
         }
 
         // GET: Admin/Khoa/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var tblKhoa = await _context.TblKhoa.FindAsync(id);
-            if (tblKhoa == null)
-            {
-                return NotFound();
+                var tblKhoa = await _context.TblKhoa.FindAsync(id);
+                if (tblKhoa == null)
+                {
+                    return NotFound();
+                }
+                return View(tblKhoa);
             }
-            return View(tblKhoa);
+            return NotFound();
+            
         }
 
         // POST: Admin/Khoa/Edit/5
@@ -88,50 +122,60 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("StMaKhoa,StTenKhoa")] TblKhoa tblKhoa)
         {
-            if (id != tblKhoa.StMaKhoa)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id != tblKhoa.StMaKhoa)
+                {
+                    return NotFound();
+                }
 
-            if (ModelState.IsValid)
-            {
-                try
+                if (ModelState.IsValid)
                 {
-                    _context.Update(tblKhoa);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TblKhoaExists(tblKhoa.StMaKhoa))
+                    try
                     {
-                        return NotFound();
+                        _context.Update(tblKhoa);
+                        await _context.SaveChangesAsync();
                     }
-                    else
+                    catch (DbUpdateConcurrencyException)
                     {
-                        throw;
+                        if (!TblKhoaExists(tblKhoa.StMaKhoa))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
                     }
+                    return RedirectToAction(nameof(Index));
                 }
-                return RedirectToAction(nameof(Index));
+                return View(tblKhoa);
             }
-            return View(tblKhoa);
+            return NotFound();
+            
         }
 
         // GET: Admin/Khoa/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var tblKhoa = await _context.TblKhoa
-                .FirstOrDefaultAsync(m => m.StMaKhoa == id);
-            if (tblKhoa == null)
-            {
-                return NotFound();
-            }
+                var tblKhoa = await _context.TblKhoa
+                    .FirstOrDefaultAsync(m => m.StMaKhoa == id);
+                if (tblKhoa == null)
+                {
+                    return NotFound();
+                }
 
-            return View(tblKhoa);
+                return View(tblKhoa);
+            }
+            return NotFound();
+           
         }
 
         // POST: Admin/Khoa/Delete/5
@@ -139,10 +183,15 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var tblKhoa = await _context.TblKhoa.FindAsync(id);
-            _context.TblKhoa.Remove(tblKhoa);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if (XacNhanRole() == true)
+            {
+                var tblKhoa = await _context.TblKhoa.FindAsync(id);
+                _context.TblKhoa.Remove(tblKhoa);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return NotFound();
+            
         }
 
         private bool TblKhoaExists(int id)

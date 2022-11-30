@@ -38,7 +38,7 @@
                         Số lượng
                         <input id="txtsoLuong" name="txtsoLuong" class="cart-plus-minus-box" value="1" type="text">
                     </div>
-                    <button class="add-to-cart" href="javascript:void(0)">Thêm vào</button> 
+                    <button class="add-to-cart" href="javascript:void(0)">Thêm vào giỏ</button> 
                     <input hidden asp-for="StMaSach" />
                 </div>
             </div>
@@ -69,7 +69,8 @@
                                 
                             <div class="card-footer d-flex justify-content-between bg-light border">
                                 <a asp-area="" asp-route-id="@item.StMaSach" asp-controller="Book" asp-action="Detail" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
-                                <a href="javascript:void(0)" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ sách</a>
+                                <!--<a name="StMaSach" href="javascript:void(0)" class="btn btn-sm text-dark p-0 add-to-cart"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ sách</a><input hidden asp-for="StMaSach" />
+    -->
                             </div>
 
                         </div>

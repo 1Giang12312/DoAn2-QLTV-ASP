@@ -5,10 +5,10 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Kệ sách</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Thêm mới</a>
 </p>
 <table class="table">
     <thead>
@@ -26,9 +26,9 @@
                 @Html.DisplayFor(modelItem => item.StTenKeSach)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.StMaKeSach">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.StMaKeSach">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.StMaKeSach">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.StMaKeSach">Chỉnh sửa</a> |
+                <a asp-action="Details" asp-route-id="@item.StMaKeSach">Chi tiết</a> |
+                <a asp-action="Delete" asp-route-id="@item.StMaKeSach">Xóa</a>
             </td>
         </tr>
 }

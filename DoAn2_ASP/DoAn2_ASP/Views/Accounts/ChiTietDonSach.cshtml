@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "ChiTietDonSach";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<TblChiTietDonMuon> chitiet = ViewBag.chitiet;
+}
+
+<h1>Chi tiết đơn sách</h1>
+@if (chitiet != null && chitiet.Count() > 0)
+{
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <tbody>
+                <tr>
+                    <th>Mã sách</th>
+                    <th>Tên sách</th>
+                    <th>Số lượng</th>
+                </tr>
+                @foreach (var item in chitiet)
+                {
+                    <tr>
+                        <td>@item.StMaSach</td>
+                        <td>@item.StMaSachNavigation.StTenSach</td>
+                        <td>@item.InSoLuong</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+        <br />
+        <br />
+        <br />
+        <hr />
+        <div id="records_table">
+        </div>
+    </div>
+}

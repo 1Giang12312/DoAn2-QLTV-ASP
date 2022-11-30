@@ -9101,11 +9101,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\saoluu2811\\DoAn2_ASP\\DoAn2_ASP.csproj",
+      "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\DoAn2-QLTV-ASP\\DoAn2_ASP\\DoAn2_ASP\\DoAn2_ASP.csproj",
       "projectName": "DoAn2_ASP",
-      "projectPath": "C:\\Users\\Administrator\\Desktop\\saoluu2811\\DoAn2_ASP\\DoAn2_ASP.csproj",
+      "projectPath": "C:\\Users\\Administrator\\Desktop\\DoAn2-QLTV-ASP\\DoAn2_ASP\\DoAn2_ASP\\DoAn2_ASP.csproj",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Administrator\\Desktop\\saoluu2811\\DoAn2_ASP\\obj\\",
+      "outputPath": "C:\\Users\\Administrator\\Desktop\\DoAn2-QLTV-ASP\\DoAn2_ASP\\DoAn2_ASP\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",

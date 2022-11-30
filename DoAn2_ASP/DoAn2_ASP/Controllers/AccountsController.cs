@@ -53,6 +53,25 @@ namespace DoAn2_ASP.Controllers
         }
         [HttpGet]
         [AllowAnonymous]
+        public async Task<IActionResult> ChiTietDonSach(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var tblDonMuonSach = await _context.TblDonMuonSach
+                .Include(t => t.StMaSinhVienNavigation)
+                .FirstOrDefaultAsync(m => m.StMaDonMuon == id);
+            if (tblDonMuonSach == null)
+            {
+                return NotFound();
+            }
+            var chitiet = _context.TblChiTietDonMuon.AsNoTracking().Include(t => t.StMaSachNavigation).Where(m => m.StMaDonMuon == id).ToList();
+            ViewBag.chitiet = chitiet;
+            ViewData["StMaSinhVien"] = new SelectList(_context.TblSinhVien, "StMaSinhVien", "StMaSinhVien", tblDonMuonSach.StMaSinhVien);
+            return View(tblDonMuonSach);
+        }
         public IActionResult ValidateEmail(string Email)
         {
             try
@@ -239,10 +258,13 @@ namespace DoAn2_ASP.Controllers
             HttpContext.Session.Remove("StMaSinhVien");
             return RedirectToAction("Index", "Home");
         }
-
+        public IActionResult ThongBao()
+        {
+            return View();
+        }
         [HttpPost]
         public IActionResult ChangePassword(ChangePasswordVM model)
-         {
+        {
             try
             {
                 var taikhoanID = HttpContext.Session.GetString("StMaSinhVien");//lay session

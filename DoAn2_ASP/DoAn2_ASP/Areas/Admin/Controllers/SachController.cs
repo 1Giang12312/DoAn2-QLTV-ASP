@@ -24,39 +24,53 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
             _context = context;
             _notiyfService = notiyfService;
         }
-
+        public bool XacNhanRole()
+        {
+            var taikhoanID = HttpContext.Session.GetString("StMaSinhVien");
+            if (_context.TblTaiKhoan.Where(t => t.StMaSinhVien == taikhoanID).Where(b => b.InMaQuyenHan == 1).Count() > 0)
+            {
+                return true;
+            }
+            else return false;
+        }
         // GET: Admin/Sach
         public IActionResult Index(int page = 1, int StMaLoaiSach = 0)
          {
-            //var qL_ThuVienContext = _context.TblSach.Include(t => t.StMaKeSachNavigation).Include(t => t.StMaLoaiSachNavigation).Include(t => t.StMaTacGiaNavigation);
-            var pageNumber = page; // == null || page <= 0 ? 1 : page.Value;
-            var pageSize = 3;
-            List<TblSach> lsSach = new List<TblSach>();
-            if (StMaLoaiSach != 0)
+            if (XacNhanRole() == true)
             {
-                lsSach = _context.TblSach
-                    .AsNoTracking()
-                    .Where(x=>x.StMaLoaiSach==StMaLoaiSach)
-                    .Include(t => t.StMaKeSachNavigation)
-                    .Include(t => t.StMaLoaiSachNavigation)
-                    .Include(t => t.StMaTacGiaNavigation)
-                    .OrderByDescending(x => x.StMaSach).ToList();
-            }
-            else
-            {
-                lsSach = _context.TblSach.AsNoTracking()
-                    .Include(t => t.StMaKeSachNavigation)
-                    .Include(t => t.StMaLoaiSachNavigation)
-                    .Include(t => t.StMaTacGiaNavigation)
-                    .OrderByDescending(x => x.StMaSach).ToList();
 
-            }
+                //var qL_ThuVienContext = _context.TblSach.Include(t => t.StMaKeSachNavigation).Include(t => t.StMaLoaiSachNavigation).Include(t => t.StMaTacGiaNavigation);
+                var pageNumber = page; // == null || page <= 0 ? 1 : page.Value;
+                var pageSize = 3;
+                List<TblSach> lsSach = new List<TblSach>();
+                if (StMaLoaiSach != 0)
+                {
+                    lsSach = _context.TblSach
+                        .AsNoTracking()
+                        .Where(x => x.StMaLoaiSach == StMaLoaiSach)
+                        .Include(t => t.StMaKeSachNavigation)
+                        .Include(t => t.StMaLoaiSachNavigation)
+                        .Include(t => t.StMaTacGiaNavigation)
+                        .OrderByDescending(x => x.StMaSach).ToList();
+                }
+                else
+                {
+                    lsSach = _context.TblSach.AsNoTracking()
+                        .Include(t => t.StMaKeSachNavigation)
+                        .Include(t => t.StMaLoaiSachNavigation)
+                        .Include(t => t.StMaTacGiaNavigation)
+                        .OrderByDescending(x => x.StMaSach).ToList();
 
-            PagedList<TblSach> models =  new PagedList<TblSach>(lsSach.AsQueryable(), pageNumber, pageSize);
-            ViewBag.CurrentPage = pageNumber;
-            ViewBag.CurrentMaLoaiSach = StMaLoaiSach;
-            ViewData["LoaiSach"] = new SelectList(_context.TblLoaiSach, "StMaLoaiSach", "StTenSach", StMaLoaiSach);
-            return View(models);
+                }
+
+                PagedList<TblSach> models = new PagedList<TblSach>(lsSach.AsQueryable(), pageNumber, pageSize);
+                ViewBag.CurrentPage = pageNumber;
+                ViewBag.CurrentMaLoaiSach = StMaLoaiSach;
+                ViewData["LoaiSach"] = new SelectList(_context.TblLoaiSach, "StMaLoaiSach", "StTenSach", StMaLoaiSach);
+                return View(models);
+            }
+            return NotFound();
+
         }
         public IActionResult Filtter(int StMaLoaiSach = 0)
         {
@@ -74,31 +88,43 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         // GET: Admin/Sach/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var tblSach = await _context.TblSach
-                .Include(t => t.StMaKeSachNavigation)
-                .Include(t => t.StMaLoaiSachNavigation)
-                .Include(t => t.StMaTacGiaNavigation)
-                .FirstOrDefaultAsync(m => m.StMaSach == id);
-            if (tblSach == null)
-            {
-                return NotFound();
-            }
+                var tblSach = await _context.TblSach
+                    .Include(t => t.StMaKeSachNavigation)
+                    .Include(t => t.StMaLoaiSachNavigation)
+                    .Include(t => t.StMaTacGiaNavigation)
+                    .FirstOrDefaultAsync(m => m.StMaSach == id);
+                if (tblSach == null)
+                {
+                    return NotFound();
+                }
 
-            return View(tblSach);
+                return View(tblSach);
+            }
+            return NotFound();
+
+            
         }
 
         // GET: Admin/Sach/Create
         public IActionResult Create()
         {
-            ViewData["StMaKeSach"] = new SelectList(_context.TblKeSach, "StMaKeSach", "StTenKeSach");
-            ViewData["StMaLoaiSach"] = new SelectList(_context.TblLoaiSach, "StMaLoaiSach", "StTenSach");
-            ViewData["StMaTacGia"] = new SelectList(_context.TblTacGia, "StMaTacGia", "StTenTacGia");
-            return View();
+            if (XacNhanRole() == true)
+            {
+                ViewData["StMaKeSach"] = new SelectList(_context.TblKeSach, "StMaKeSach", "StTenKeSach");
+                ViewData["StMaLoaiSach"] = new SelectList(_context.TblLoaiSach, "StMaLoaiSach", "StTenSach");
+                ViewData["StMaTacGia"] = new SelectList(_context.TblTacGia, "StMaTacGia", "StTenTacGia");
+                return View();
+            }
+            return NotFound();
+
+            
         }
 
         // POST: Admin/Sach/Create
@@ -108,41 +134,53 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("StMaSach,StTenSach,StMaLoaiSach,StMaTacGia,StMaKeSach,StTomTat,StTinhTrang,StAnh,InSoLuong")] TblSach tblSach, IFormFile file)
         {
-            if (ModelState.IsValid)
+            if (XacNhanRole() == true)
             {
                 if (ModelState.IsValid)
                 {
-                   
-                    tblSach.StAnh = Upload(file);
-                    _context.Add(tblSach);
-                    await _context.SaveChangesAsync();
-                    _notiyfService.Success("Thêm thành công");
-                    return RedirectToAction(nameof(Index));
+                    if (ModelState.IsValid)
+                    {
+
+                        tblSach.StAnh = Upload(file);
+                        _context.Add(tblSach);
+                        await _context.SaveChangesAsync();
+                        _notiyfService.Success("Thêm thành công");
+                        return RedirectToAction(nameof(Index));
+                    }
                 }
+                ViewData["StMaKeSach"] = new SelectList(_context.TblKeSach, "StMaKeSach", "StTenKeSach", tblSach.StMaKeSach);
+                ViewData["StMaLoaiSach"] = new SelectList(_context.TblLoaiSach, "StMaLoaiSach", "StMaLoaiSach", tblSach.StMaLoaiSach);
+                ViewData["StMaTacGia"] = new SelectList(_context.TblTacGia, "StMaTacGia", "StTenTacGia", tblSach.StMaTacGia);
+                return View(tblSach);
             }
-            ViewData["StMaKeSach"] = new SelectList(_context.TblKeSach, "StMaKeSach", "StTenKeSach", tblSach.StMaKeSach);
-            ViewData["StMaLoaiSach"] = new SelectList(_context.TblLoaiSach, "StMaLoaiSach", "StMaLoaiSach", tblSach.StMaLoaiSach);
-            ViewData["StMaTacGia"] = new SelectList(_context.TblTacGia, "StMaTacGia", "StTenTacGia", tblSach.StMaTacGia);
-            return View(tblSach);
+            return NotFound();
+
+            
         }
 
         // GET: Admin/Sach/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var tblSach = await _context.TblSach.FindAsync(id);
-            if (tblSach == null)
-            {
-                return NotFound();
+                var tblSach = await _context.TblSach.FindAsync(id);
+                if (tblSach == null)
+                {
+                    return NotFound();
+                }
+                ViewData["StMaKeSach"] = new SelectList(_context.TblKeSach, "StMaKeSach", "StTenKeSach", tblSach.StMaKeSach);
+                ViewData["StMaLoaiSach"] = new SelectList(_context.TblLoaiSach, "StMaLoaiSach", "StTenSach", tblSach.StMaLoaiSach);
+                ViewData["StMaTacGia"] = new SelectList(_context.TblTacGia, "StMaTacGia", "StTenTacGia", tblSach.StMaTacGia);
+                return View(tblSach);
             }
-            ViewData["StMaKeSach"] = new SelectList(_context.TblKeSach, "StMaKeSach", "StTenKeSach", tblSach.StMaKeSach);
-            ViewData["StMaLoaiSach"] = new SelectList(_context.TblLoaiSach, "StMaLoaiSach", "StTenSach", tblSach.StMaLoaiSach);
-            ViewData["StMaTacGia"] = new SelectList(_context.TblTacGia, "StMaTacGia", "StTenTacGia", tblSach.StMaTacGia);
-            return View(tblSach);
+            return NotFound();
+
+           
         }
 
         // POST: Admin/Sach/Edit/5
@@ -152,61 +190,73 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("StMaSach,StTenSach,StMaLoaiSach,StMaTacGia,StMaKeSach,StTomTat,StTinhTrang,StAnh,InSoLuong")] TblSach tblSach,IFormFile file)
         {
-            if (id != tblSach.StMaSach)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id != tblSach.StMaSach)
+                {
+                    return NotFound();
+                }
 
-            if (ModelState.IsValid)
-            {
-                try
+                if (ModelState.IsValid)
                 {
-                    if (file != null)
+                    try
                     {
-                        tblSach.StAnh = Upload(file);
+                        if (file != null)
+                        {
+                            tblSach.StAnh = Upload(file);
+                        }
+                        _context.Update(tblSach);
+                        _notiyfService.Success("Cập nhật thành công");
+                        await _context.SaveChangesAsync();
                     }
-                    _context.Update(tblSach);
-                    _notiyfService.Success("Cập nhật thành công");
-                    await _context.SaveChangesAsync();
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!TblSachExists(tblSach.StMaSach))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TblSachExists(tblSach.StMaSach))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                ViewData["StMaKeSach"] = new SelectList(_context.TblKeSach, "StMaKeSach", "StTenKeSach", tblSach.StMaKeSach);
+                ViewData["StMaLoaiSach"] = new SelectList(_context.TblLoaiSach, "StMaLoaiSach", "StMaLoaiSach", tblSach.StMaLoaiSach);
+                ViewData["StMaTacGia"] = new SelectList(_context.TblTacGia, "StMaTacGia", "StTenTacGia", tblSach.StMaTacGia);
+                return View(tblSach);
             }
-            ViewData["StMaKeSach"] = new SelectList(_context.TblKeSach, "StMaKeSach", "StTenKeSach", tblSach.StMaKeSach);
-            ViewData["StMaLoaiSach"] = new SelectList(_context.TblLoaiSach, "StMaLoaiSach", "StMaLoaiSach", tblSach.StMaLoaiSach);
-            ViewData["StMaTacGia"] = new SelectList(_context.TblTacGia, "StMaTacGia", "StTenTacGia", tblSach.StMaTacGia);
-            return View(tblSach);
+            return NotFound();
+
+            
         }
 
         // GET: Admin/Sach/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var tblSach = await _context.TblSach
-                .Include(t => t.StMaKeSachNavigation)
-                .Include(t => t.StMaLoaiSachNavigation)
-                .Include(t => t.StMaTacGiaNavigation)
-                .FirstOrDefaultAsync(m => m.StMaSach == id);
-            if (tblSach == null)
-            {
-                return NotFound();
-            }
+                var tblSach = await _context.TblSach
+                    .Include(t => t.StMaKeSachNavigation)
+                    .Include(t => t.StMaLoaiSachNavigation)
+                    .Include(t => t.StMaTacGiaNavigation)
+                    .FirstOrDefaultAsync(m => m.StMaSach == id);
+                if (tblSach == null)
+                {
+                    return NotFound();
+                }
 
-            return View(tblSach);
+                return View(tblSach);
+            }
+            return NotFound();
+
+            
         }
 
         // POST: Admin/Sach/Delete/5
@@ -214,10 +264,16 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var tblSach = await _context.TblSach.FindAsync(id);
-            _context.TblSach.Remove(tblSach);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if (XacNhanRole() == true)
+            {
+                var tblSach = await _context.TblSach.FindAsync(id);
+                _context.TblSach.Remove(tblSach);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return NotFound();
+
+            
         }
 
         private bool TblSachExists(int id)

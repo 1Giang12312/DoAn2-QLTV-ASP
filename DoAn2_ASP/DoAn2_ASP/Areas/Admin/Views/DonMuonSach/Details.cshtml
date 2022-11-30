@@ -6,10 +6,10 @@
     List<TblChiTietDonMuon> chitiet = ViewBag.chitiet;
 }
 
-<h1>Details</h1>
+<h1>Đơn mượn sách</h1>
 
 <div>
-    <h4>TblDonMuonSach</h4>
+    <h4>Chi tiết đơn mượn</h4>
     <hr />
     <dt class="col-sm-2">
         @Html.DisplayNameFor(model => model.StMaKhoa)
@@ -65,12 +65,14 @@
                         <tr>
                             <th>Mã sách</th>
                             <th>Tên sách</th>
+                            <th>Số lượng</th>
                         </tr>
                         @foreach (var item in chitiet)
                         {
                             <tr>
                                 <td>@item.StMaSach</td>
                                 <td>@item.StMaSachNavigation.StTenSach</td>
+                                <td>@item.InSoLuong</td>
                             </tr>
                         }
                     </tbody>

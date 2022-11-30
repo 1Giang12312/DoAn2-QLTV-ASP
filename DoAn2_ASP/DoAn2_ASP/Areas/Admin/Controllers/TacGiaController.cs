@@ -14,6 +14,11 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
     public class TacGiaController : Controller
     {
         private readonly QL_ThuVienContext _context;
+        
+        public TacGiaController(QL_ThuVienContext context)
+        {
+            _context = context;
+        }
         public bool XacNhanRole()
         {
             var taikhoanID = HttpContext.Session.GetString("StMaSinhVien");
@@ -23,11 +28,6 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
             }
             else return false;
         }
-        public TacGiaController(QL_ThuVienContext context)
-        {
-            _context = context;
-        }
-
         // GET: Admin/TacGia
         public async Task<IActionResult> Index()
         {

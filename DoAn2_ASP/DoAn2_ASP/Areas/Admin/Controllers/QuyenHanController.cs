@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DoAn2_ASP.Models;
 using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Http;
 
 namespace DoAn2_ASP.Areas.Admin.Controllers
 {
@@ -20,35 +21,61 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
             _context = context;
             _notifyService = notifyService;
         }
-
+        public bool XacNhanRole()
+        {
+            var taikhoanID = HttpContext.Session.GetString("StMaSinhVien");
+            if (_context.TblTaiKhoan.Where(t => t.StMaSinhVien == taikhoanID).Where(b => b.InMaQuyenHan == 1).Count() > 0)
+            {
+                return true;
+            }
+            else return false;
+        }
         // GET: Admin/QuyenHan
         public async Task<IActionResult> Index()
         {
-            return View(await _context.TblQuyenHan.ToListAsync());
+            if (XacNhanRole() == true)
+            {
+                return View(await _context.TblQuyenHan.ToListAsync());
+            }
+            return NotFound();
+
+            
         }
 
         // GET: Admin/QuyenHan/Details/5
         public async Task<IActionResult> Details(short? id)
         {
-            if (id == null)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var tblQuyenHan = await _context.TblQuyenHan
-                .FirstOrDefaultAsync(m => m.InMaQuyenHan == id);
-            if (tblQuyenHan == null)
-            {
-                return NotFound();
-            }
+                var tblQuyenHan = await _context.TblQuyenHan
+                    .FirstOrDefaultAsync(m => m.InMaQuyenHan == id);
+                if (tblQuyenHan == null)
+                {
+                    return NotFound();
+                }
 
-            return View(tblQuyenHan);
+                return View(tblQuyenHan);
+            }
+            return NotFound();
+
+           
         }
 
         // GET: Admin/QuyenHan/Create
         public IActionResult Create()
         {
-            return View();
+            if (XacNhanRole() == true)
+            {
+                return View();
+            }
+            return NotFound();
+
+            
         }
 
         // POST: Admin/QuyenHan/Create
@@ -58,30 +85,42 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("InMaQuyenHan,StTenQuyenHan,StGhiChu")] TblQuyenHan tblQuyenHan)
         {
-            if (ModelState.IsValid)
+            if (XacNhanRole() == true)
             {
-                _context.Add(tblQuyenHan);
-                await _context.SaveChangesAsync();
-                _notifyService.Success("Tạo mới thành công");
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    _context.Add(tblQuyenHan);
+                    await _context.SaveChangesAsync();
+                    _notifyService.Success("Tạo mới thành công");
+                    return RedirectToAction(nameof(Index));
+                }
+                return View(tblQuyenHan);
             }
-            return View(tblQuyenHan);
+            return NotFound();
+
+           
         }
 
         // GET: Admin/QuyenHan/Edit/5
         public async Task<IActionResult> Edit(short? id)
         {
-            if (id == null)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var tblQuyenHan = await _context.TblQuyenHan.FindAsync(id);
-            if (tblQuyenHan == null)
-            {
-                return NotFound();
+                var tblQuyenHan = await _context.TblQuyenHan.FindAsync(id);
+                if (tblQuyenHan == null)
+                {
+                    return NotFound();
+                }
+                return View(tblQuyenHan);
             }
-            return View(tblQuyenHan);
+            return NotFound();
+
+            
         }
 
         // POST: Admin/QuyenHan/Edit/5
@@ -91,52 +130,64 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(short id, [Bind("InMaQuyenHan,StTenQuyenHan,StGhiChu")] TblQuyenHan tblQuyenHan)
         {
-            if (id != tblQuyenHan.InMaQuyenHan)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id != tblQuyenHan.InMaQuyenHan)
+                {
+                    return NotFound();
+                }
 
-            if (ModelState.IsValid)
-            {
-                try
+                if (ModelState.IsValid)
                 {
-                    _context.Update(tblQuyenHan);
-                    await _context.SaveChangesAsync();
-                    _notifyService.Success("Cập nhật thành công");
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TblQuyenHanExists(tblQuyenHan.InMaQuyenHan))
+                    try
                     {
-                        _notifyService.Success("Có lỗi xảy ra");
-                        return NotFound();
+                        _context.Update(tblQuyenHan);
+                        await _context.SaveChangesAsync();
+                        _notifyService.Success("Cập nhật thành công");
                     }
-                    else
+                    catch (DbUpdateConcurrencyException)
                     {
-                        throw;
+                        if (!TblQuyenHanExists(tblQuyenHan.InMaQuyenHan))
+                        {
+                            _notifyService.Success("Có lỗi xảy ra");
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
                     }
+                    return RedirectToAction(nameof(Index));
                 }
-                return RedirectToAction(nameof(Index));
+                return View(tblQuyenHan);
             }
-            return View(tblQuyenHan);
+            return NotFound();
+
+            
         }
 
         // GET: Admin/QuyenHan/Delete/5
         public async Task<IActionResult> Delete(short? id)
         {
-            if (id == null)
+            if (XacNhanRole() == true)
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var tblQuyenHan = await _context.TblQuyenHan
-                .FirstOrDefaultAsync(m => m.InMaQuyenHan == id);
-            if (tblQuyenHan == null)
-            {
-                return NotFound();
-            }
+                var tblQuyenHan = await _context.TblQuyenHan
+                    .FirstOrDefaultAsync(m => m.InMaQuyenHan == id);
+                if (tblQuyenHan == null)
+                {
+                    return NotFound();
+                }
 
-            return View(tblQuyenHan);
+                return View(tblQuyenHan);
+            }
+            return NotFound();
+
+            
         }
 
         // POST: Admin/QuyenHan/Delete/5
@@ -144,11 +195,17 @@ namespace DoAn2_ASP.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(short id)
         {
-            var tblQuyenHan = await _context.TblQuyenHan.FindAsync(id);
-            _context.TblQuyenHan.Remove(tblQuyenHan);
-            await _context.SaveChangesAsync();
-            _notifyService.Success("Xóa quyền thành công");
-            return RedirectToAction(nameof(Index));
+            if (XacNhanRole() == true)
+            {
+                var tblQuyenHan = await _context.TblQuyenHan.FindAsync(id);
+                _context.TblQuyenHan.Remove(tblQuyenHan);
+                await _context.SaveChangesAsync();
+                _notifyService.Success("Xóa quyền thành công");
+                return RedirectToAction(nameof(Index));
+            }
+            return NotFound();
+
+            
         }
 
         private bool TblQuyenHanExists(short id)
